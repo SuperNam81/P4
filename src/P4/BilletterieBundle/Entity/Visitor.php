@@ -50,6 +50,13 @@ class Visitor
     private $country;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    private $email;
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="discount", type="boolean", nullable=true)
@@ -70,12 +77,6 @@ class Visitor
      */
     private $quantity;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="booking", type="string", length=255, nullable=true)
-     */
-    private $booking;
 
     /**
      * Get id
@@ -184,6 +185,30 @@ class Visitor
     }
 
     /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return Booking
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+    
+    /**
      * Set discount
      *
      * @param boolean $discount
@@ -253,29 +278,5 @@ class Visitor
     public function getQuantity()
     {
         return $this->quantity;
-    }
-
-    /**
-     * Set booking
-     *
-     * @param string $booking
-     *
-     * @return Visitor
-     */
-    public function setBooking($booking)
-    {
-        $this->booking = $booking;
-
-        return $this;
-    }
-
-    /**
-     * Get booking
-     *
-     * @return string
-     */
-    public function getBooking()
-    {
-        return $this->booking;
     }
 }

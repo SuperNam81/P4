@@ -6763,13 +6763,19 @@ button.close {
 
 /* MON CSS */ 
 
+footer p
+{
+  font-size: 80%;
+  text-align: right;
+  color: #7E7E7E;
+}
+
 @media (min-width: 1200px) 
 {
   .container {
     width: 80%;
   }
 }
-
 
 /* JUMBOTRON */
 .jumbotron 

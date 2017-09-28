@@ -5,13 +5,13 @@ namespace P4\BilletterieBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class VisitorType extends AbstractType
 {
@@ -25,6 +25,7 @@ class VisitorType extends AbstractType
         ->add('lastname',    TextType::class)
         ->add('dateBirth',    BirthdayType::class)
         ->add('country',    CountryType::class)
+        ->add('email',     EmailType::class)
         ->add('discount',    CheckboxType::class, array('required' => false))
 
         ->add('ticket',    ChoiceType::class, array(
@@ -36,7 +37,7 @@ class VisitorType extends AbstractType
 
         ->add('quantity',    ChoiceType::class, array(
         'choices'  => array(
-            'Nombre de billet' => range(1,10),
+            'Nombre de billet' => range(0,10),
         ),
       ));
     }

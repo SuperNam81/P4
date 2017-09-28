@@ -3,7 +3,6 @@
 namespace P4\BilletterieBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Booking
@@ -30,24 +29,15 @@ class Booking
     private $bookingDate;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=255)
-     */
-    private $email;
-
-    /**
      * @ORM\OneToOne(targetEntity="P4\BilletterieBundle\Entity\Visitor", cascade={"persist"})
      */
-    private $visitors;
+    private $visitor;
 
 
     public function __construct()
     {
         $this->bookingDate         = new \Datetime();
-        //$this->visitors   = new ArrayCollection();
     }
-
 
     /**
      * Get id
@@ -84,76 +74,26 @@ class Booking
     }
 
     /**
-     * Set email
+     * Set visitor
      *
-     * @param string $email
+     * @param \P4\BilletterieBundle\Entity\Visitor $visitor
      *
      * @return Booking
      */
-    public function setEmail($email)
+    public function setVisitor(\P4\BilletterieBundle\Entity\Visitor $visitor = null)
     {
-        $this->email = $email;
+        $this->visitor = $visitor;
 
         return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Visitor $visitor
-     
-    public function addVisitor(Visitor $visitor)
-    {
-        $this->visitors[] = $visitor;
-    }
-
-    /**
-     * @param Visitor $visitor
-     
-    public function removeVisitor(Visitor $visitor)
-    {
-        $this->visitors->removeElement($visitor);
     }
 
     /**
      * Get visitor
      *
-     * @return ArrayCollection
-     
-    public function getVisitors()
-    {
-        return $this->visitors;
-    }*/
-
-    /**
-     * Set visitors
-     *
-     * @param \P4\BilletterieBundle\Entity\Visitor $visitors
-     *
-     * @return Booking
-     */
-    public function setVisitors(\P4\BilletterieBundle\Entity\Visitor $visitors = null)
-    {
-        $this->visitors = $visitors;
-
-        return $this;
-    }
-
-    /**
-     * Get visitors
-     *
      * @return \P4\BilletterieBundle\Entity\Visitor
      */
-    public function getVisitors()
+    public function getVisitor()
     {
-        return $this->visitors;
+        return $this->visitor;
     }
 }
