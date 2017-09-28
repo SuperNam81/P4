@@ -8,7 +8,7 @@
 
     <title>{% block title %}Billetterie{% endblock %}</title>
 
-    {% block stylesheets %}
+    {#{% block stylesheets %}
 
       {% stylesheets filter='cssrewrite, ?scssphp'
       'bundles/p4billetterie/css/bootstrap.v1.css'
@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
       {% endstylesheets %}
 
-    {% endblock %}
+    {% endblock %}#}
 
   </head>
 
@@ -38,21 +38,21 @@
 
       <hr>
 
-      {# FOOTER #}
+      {# FOOTER 
       <footer>
         <p>superNam© {{ 'now'|date('Y') }}.</p>
       </footer>
     </div>
-  </div>
+  </div>#}
 
 
-  {# JAVASCRIPT #}
+  {# JAVASCRIPT 
   {% javascripts filter='jsqueeze' 
     'bundles/p4billetterie/js/bootstrap.min.js'
     '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'
      %}
       <script type="text/javascript" src="{{ asset_url }}" /></script>
-  {% endjavascripts %}
+  {% endjavascripts %}#}
 
   </body>
 </html>

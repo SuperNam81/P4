@@ -2,3 +2,8 @@ p4_billetterie_homepage:
     path:     /
     defaults:
       _controller: P4BilletterieBundle:Booking:index
+
+p4_billetterie_test:
+    path:     /test
+    defaults:
+      _controller: P4BilletterieBundle:Booking:test

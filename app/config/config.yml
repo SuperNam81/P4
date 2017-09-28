@@ -37,6 +37,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    form_themes:
+        - 'bootstrap_3_layout.html.twig'
 
 # Doctrine Configuration
 doctrine:
@@ -69,11 +71,11 @@ swiftmailer:
     spool: { type: memory }
     
 # Assetic Configuration
-assetic:
-    debug:          '%kernel.debug%'
-    use_controller: '%kernel.debug%'
-    filters:
-        cssrewrite: ~
-        jsqueeze:   ~
-        scssphp:
-            formatter: 'Leafo\ScssPhp\Formatter\Compressed'
+#assetic:
+#    debug:          '%kernel.debug%'
+#    use_controller: '%kernel.debug%'
+#    filters:
+#        cssrewrite: ~
+#        jsqueeze:   ~
+#        scssphp:
+#            formatter: 'Leafo\ScssPhp\Formatter\Compressed'
