@@ -1,0 +1,58 @@
+{# src/P4/BilletterieBundle/Resources/views/layout.html.twig #}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}Billetterie{% endblock %}</title>
+
+    {% block stylesheets %}
+
+      {% stylesheets filter='cssrewrite, ?scssphp'
+      'bundles/p4billetterie/css/bootstrap.v1.css'
+       %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+      {% endstylesheets %}
+
+    {% endblock %}
+
+  </head>
+
+  <body>
+  <div class="container">
+    <div id="header" class="jumbotron">
+      <h1>Musée du Louvre</h1>
+      <p>
+        Achetez dès maintenant votre billet.
+      </p>
+    </div>
+  
+
+    <div class="container-fluid">
+
+      {# BODY #}
+      {% block body %}
+      {% endblock %}
+
+      <hr>
+
+      {# FOOTER #}
+      <footer>
+        <p>superNam© {{ 'now'|date('Y') }}.</p>
+      </footer>
+    </div>
+  </div>
+
+
+  {# JAVASCRIPT #}
+  {% javascripts filter='jsqueeze' 
+    'bundles/p4billetterie/js/bootstrap.min.js'
+    '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'
+     %}
+      <script type="text/javascript" src="{{ asset_url }}" /></script>
+  {% endjavascripts %}
+
+  </body>
+</html>

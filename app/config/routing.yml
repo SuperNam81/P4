@@ -1,0 +1,4 @@
+p4_billetterie:
+    resource: "@P4BilletterieBundle/Resources/config/routing.yml"
+    prefix:   /billetterie
+
