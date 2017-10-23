@@ -3,12 +3,14 @@
 namespace P4\BilletterieBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Visitor
  *
  * @ORM\Table(name="p4_visitor")
  * @ORM\Entity(repositoryClass="P4\BilletterieBundle\Repository\VisitorRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Visitor
 {
@@ -53,6 +55,7 @@ class Visitor
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\Email
      */
     private $email;
 
@@ -74,6 +77,7 @@ class Visitor
      * @var int
      *
      * @ORM\Column(name="quantity", type="integer")
+     * @Assert\Range(max=10)
      */
     private $quantity;
 
@@ -207,7 +211,7 @@ class Visitor
     {
         return $this->email;
     }
-    
+
     /**
      * Set discount
      *
