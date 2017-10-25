@@ -9,9 +9,8 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use P4\BilletterieBundle\Entity\Visitor;
 
 class VisitorType extends AbstractType
 {
@@ -21,25 +20,17 @@ class VisitorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('name',    TextType::class)
-        ->add('lastname',    TextType::class)
-        ->add('dateBirth',    BirthdayType::class)
-        ->add('country',    CountryType::class)
-        ->add('email',     EmailType::class)
-        ->add('discount',    CheckboxType::class, array('required' => false))
-
-        ->add('ticket',    ChoiceType::class, array(
-        'choices' => array(
-            'Journée' => true,
-            'Demi-journée' => false,
-        ),
-      ))
-
-        ->add('quantity',    ChoiceType::class, array(
-        'choices'  => array(
-            'Nombre de billet' => range(0,10),
-        ),
-      ));
+        ->add('name', TextType::class, array(
+            'label' => 'Nom'))
+        ->add('lastname', TextType::class, array(
+            'label' => 'Prénom'))
+        ->add('dateBirth', BirthdayType::class, array(
+            'label' => 'Votre date de naissance'))
+        ->add('country', CountryType::class, array(
+            'label' => 'Votre pays'))
+        ->add('discount', CheckboxType::class, array(
+            'label' => 'Tarif préférentiel',     
+            'required' => false));
     }
     
     /**
@@ -59,6 +50,4 @@ class VisitorType extends AbstractType
     {
         return 'p4_billetteriebundle_visitor';
     }
-
-
 }

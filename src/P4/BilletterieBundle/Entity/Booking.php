@@ -3,12 +3,14 @@
 namespace P4\BilletterieBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Booking
  *
  * @ORM\Table(name="p4_booking")
  * @ORM\Entity(repositoryClass="P4\BilletterieBundle\Repository\BookingRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Booking
 {
@@ -29,14 +31,30 @@ class Booking
     private $bookingDate;
 
     /**
-     * @ORM\OneToOne(targetEntity="P4\BilletterieBundle\Entity\Visitor", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="P4\BilletterieBundle\Entity\Visitor", mappedBy="booking")
      */
-    private $visitor;
+    private $visitors;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\Email
+     */
+    private $email;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="ticket", type="boolean")
+     */
+    private $ticket;
 
 
     public function __construct()
     {
-        $this->bookingDate         = new \Datetime();
+        $this->bookingDate = new \Datetime();
+        $this->visitors = new ArrayCollection();
     }
 
     /**
@@ -73,27 +91,74 @@ class Booking
         return $this->bookingDate;
     }
 
+
     /**
-     * Set visitor
+     * Get visitor
      *
-     * @param \P4\BilletterieBundle\Entity\Visitor $visitor
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVisitors()
+    {
+        return $this->visitors;
+    }
+
+    public function addVisitor(Visitor $visitor)
+    {
+        $visitor->addBooking($this);
+
+        $this->visitors->add($visitor);
+    }
+
+    public function removeVisitor(Visitor $visitor)
+    {
+        // ...
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
      *
      * @return Booking
      */
-    public function setVisitor(\P4\BilletterieBundle\Entity\Visitor $visitor = null)
+    public function setEmail($email)
     {
-        $this->visitor = $visitor;
+        $this->email = $email;
 
         return $this;
     }
 
     /**
-     * Get visitor
+     * Get email
      *
-     * @return \P4\BilletterieBundle\Entity\Visitor
+     * @return string
      */
-    public function getVisitor()
+    public function getEmail()
     {
-        return $this->visitor;
+        return $this->email;
+    }
+
+    /**
+     * Set ticket
+     *
+     * @param boolean $ticket
+     *
+     * @return Visitor
+     */
+    public function setTicket($ticket)
+    {
+        $this->ticket = $ticket;
+
+        return $this;
+    }
+
+    /**
+     * Get ticket
+     *
+     * @return bool
+     */
+    public function getTicket()
+    {
+        return $this->ticket;
     }
 }
