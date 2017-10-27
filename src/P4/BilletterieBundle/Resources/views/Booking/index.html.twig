@@ -11,13 +11,10 @@
 </div>
 
 
-
 <!--
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.js"></script> 
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.js"></script> 
 -->
 
 {# JAVASCRIPT #}
@@ -26,41 +23,16 @@
 'bundles/p4billetterie/js/bootstrap.min.js'
  %}
  	<script type="text/javascript" src="{{ asset_url }}" /></script>
-	<!--
-	<script>
-	$(function() {
-		$.datepicker.regional['fr'] = {
-		closeText: 'Fermer',
-		prevText: 'Précédent',
-		nextText: 'Suivant',
-		currentText: 'Aujourd\'hui',
-		monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
-		monthNamesShort: ['Janv.','Févr.','Mars','Avril','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'],
-		dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
-		dayNamesShort: ['Dim.','Lun.','Mar.','Mer.','Jeu.','Ven.','Sam.'],
-		dayNamesMin: ['D','L','M','M','J','V','S'],
-		weekHeader: 'Sem.',
-		dateFormat: 'dd/mm/yy',
-		firstDay: 1,
-		isRTL: false,
-		showMonthAfterYear: false,
-		yearSuffix: ''};
-
-		$.datepicker.setDefaults($.datepicker.regional['fr']);
-
-		$( "#p4_billetteriebundle_booking_bookingDate").datepicker();
-	});
-	</script>
-	-->
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 	<script type="text/javascript">
 	var $collectionHolder;
-
 	// setup an "add a tag" link
 	var $addVisitorLink = $('<a href="#" class="add_visitor_link">Ajoutez un visiteur</a>');
 	var $newLinkSpan = $('<span></span>').append($addVisitorLink);
 
-	jQuery(document).ready(function() {
+	/////// DOM OK ///////
+	$(function() {
 	    // Get the ul that holds the collection of tags
 	    $collectionHolder = $('div.visitors');
 
@@ -79,8 +51,32 @@
 	        addVisitorForm($collectionHolder, $newLinkSpan);
 	    });
 	    addVisitorForm($collectionHolder, $newLinkSpan);
+
+	    /////// DATEPICKER ///////
+	    // Format FR
+	    $.datepicker.regional['fr'] = {
+		closeText: 'Fermer',
+		prevText: 'Précédent',
+		nextText: 'Suivant',
+		currentText: 'Aujourd\'hui',
+		monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
+		monthNamesShort: ['Janv.','Févr.','Mars','Avril','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'],
+		dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
+		dayNamesShort: ['Dim.','Lun.','Mar.','Mer.','Jeu.','Ven.','Sam.'],
+		dayNamesMin: ['D','L','M','M','J','V','S'],
+		weekHeader: 'Sem.',
+		dateFormat: 'dd/mm/yy',
+		firstDay: 1,
+		isRTL: false,
+		showMonthAfterYear: false,
+		yearSuffix: ''};
+
+		$.datepicker.setDefaults($.datepicker.regional['fr']);
+		// Intégration à l'input bookingDate
+		$( "#p4_billetteriebundle_booking_bookingDate").datepicker();
 	});
 
+	// Fonction ajout d'un visiteur supplémentaire
 	function addVisitorForm($collectionHolder, $newLinkSpan) {
 	    // Get the data-prototype explained earlier
 	    var prototype = $collectionHolder.data('prototype');
@@ -105,31 +101,6 @@
 	    var $newFormDiv = $('<div></div>').append(newForm);
 	    $newLinkSpan.before($newFormDiv);
 	}
-	</script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script>
-	$(function() {
-		$.datepicker.regional['fr'] = {
-		closeText: 'Fermer',
-		prevText: 'Précédent',
-		nextText: 'Suivant',
-		currentText: 'Aujourd\'hui',
-		monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
-		monthNamesShort: ['Janv.','Févr.','Mars','Avril','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'],
-		dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
-		dayNamesShort: ['Dim.','Lun.','Mar.','Mer.','Jeu.','Ven.','Sam.'],
-		dayNamesMin: ['D','L','M','M','J','V','S'],
-		weekHeader: 'Sem.',
-		dateFormat: 'dd/mm/yy',
-		firstDay: 1,
-		isRTL: false,
-		showMonthAfterYear: false,
-		yearSuffix: ''};
-
-		$.datepicker.setDefaults($.datepicker.regional['fr']);
-
-		$( "#p4_billetteriebundle_booking_bookingDate").datepicker();
-	});
 	</script>
 
 {% endjavascripts %}
