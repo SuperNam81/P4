@@ -24,9 +24,9 @@ class Booking
     private $id;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="bookingDate", type="datetime")
+     * @ORM\Column(name="bookingDate", type="string", length=255)
      */
     private $bookingDate;
 
@@ -52,7 +52,7 @@ class Booking
 
     public function __construct()
     {
-        $this->bookingDate = new \Datetime();
+        //$this->bookingDate = new \Datetime();
         $this->visitors = new ArrayCollection();
     }
 
@@ -69,7 +69,7 @@ class Booking
     /**
      * Set bookingDate
      *
-     * @param \DateTime $bookingDate
+     * @param string $bookingDate
      *
      * @return Booking
      */
@@ -83,7 +83,7 @@ class Booking
     /**
      * Get bookingDate
      *
-     * @return \DateTime
+     * @return string
      */
     public function getBookingDate()
     {

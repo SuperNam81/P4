@@ -5,6 +5,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <title>{% block title %}Billetterie{% endblock %}</title>
 
@@ -44,15 +45,5 @@
       </footer>
     </div>
   </div>
-
-
-  {# JAVASCRIPT #}
-  {% javascripts filter='jsqueeze' 
-    'bundles/p4billetterie/js/bootstrap.min.js'
-    'bundles/p4billetterie/js/jquery.js'
-     %}
-      <script type="text/javascript" src="{{ asset_url }}" /></script>
-  {% endjavascripts %}
-
   </body>
 </html>

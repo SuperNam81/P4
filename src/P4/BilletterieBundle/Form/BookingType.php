@@ -12,6 +12,9 @@ use P4\BilletterieBundle\Repository\VisitorRepository;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use P4\BilletterieBundle\Entity\Booking;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 
 class BookingType extends AbstractType
 {
@@ -30,14 +33,19 @@ class BookingType extends AbstractType
             'by_reference' => false,
         ))
         ->add('email', EmailType::class, array(
-            'label' => 'Adresse email'))
+            'label' => 'Adresse email'
+        ))
         ->add('ticket', ChoiceType::class, array(
             'label' => 'Type de billet',
             'choices' => array(
                 'Journée' => true,
                 'Demi-journée' => false,
             ),
-          ))
+        ))
+        ->add('bookingDate', TextType::class, array(
+            'label' => 'Choississez une date',
+            'attr' => array('width' => 50),
+        ))        
         ->add('valider', SubmitType::class);
     }
     
