@@ -12,41 +12,43 @@ use P4\BilletterieBundle\Form\TestType;
 
 class BookingController extends Controller
 {
-    public function indexAction(Request $request)
-    {
-	    $booking = new Booking();
-	    $form   = $this->createForm(BookingType::class, $booking);
+	public function indexAction(Request $request)
+	{
+		$booking = new Booking();
+		$form = $this->createForm(BookingType::class, $booking);
 
-	    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())  
-	    {
-	      $em = $this->getDoctrine()->getManager();
-	      $em->persist($booking);
-	      $em->flush();
+		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())  
+		{
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($booking);
+			$em->flush();
 
-	      $request->getSession()->getFlashBag()->add('notice', 'Réservation bien enregistrée.');
-	    }
+			$request->getSession()->getFlashBag()->add('notice', 'Réservation bien enregistrée.');
 
-	    return $this->render('P4BilletterieBundle:Booking:index.html.twig', array(
-	      'form' => $form->createView(),
-	    ));   
-    }
+			return $this->redirectToRoute('p4_billetterie_homepage');
+		}
 
-    public function testAction(Request $request)
-    {
-	    $test = new Test();
-	    $form   = $this->createForm(TestType::class, $test);
+		return $this->render('P4BilletterieBundle:Booking:index.html.twig', array(
+			'form' => $form->createView(),
+		));
+	}
 
-	    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) 
-	    {
-	      $em = $this->getDoctrine()->getManager();
-	      $em->persist($test);
-	      $em->flush();
+	public function testAction(Request $request)
+	{
+		$test = new Test();
+		$form   = $this->createForm(TestType::class, $test);
 
-	      $request->getSession()->getFlashBag()->add('notice', 'Email bien enregistré.');
-	    }
+		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) 
+		{
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($test);
+			$em->flush();
 
-	    return $this->render('P4BilletterieBundle:Booking:test.html.twig', array(
-	      'form' => $form->createView(),
-	    ));        
-    }    
+			$request->getSession()->getFlashBag()->add('notice', 'Email bien enregistré.');
+		}
+
+		return $this->render('P4BilletterieBundle:Booking:test.html.twig', array(
+			'form' => $form->createView(),
+		));        
+	}    
 }

@@ -14,7 +14,7 @@
 {# JAVASCRIPT #}
 {% javascripts filter='jsqueeze' 
 'bundles/p4billetterie/js/bootstrap.min.js'
-'//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'
+'bundles/p4billetterie/js/jquery.js'
  %}
 	<script type="text/javascript" src="{{ asset_url }}" /></script>
 
@@ -23,14 +23,14 @@
 
 	// setup an "add a tag" link
 	var $addVisitorLink = $('<a href="#" class="add_visitor_link">Ajoutez un visiteur</a>');
-	var $newLinkLi = $('<span></span>').append($addVisitorLink);
+	var $newLinkSpan = $('<span></span>').append($addVisitorLink);
 
 	jQuery(document).ready(function() {
 	    // Get the ul that holds the collection of tags
 	    $collectionHolder = $('div.visitors');
 
 	    // add the "add a tag" anchor and li to the tags ul
-	    $collectionHolder.append($newLinkLi);
+	    $collectionHolder.append($newLinkSpan);
 
 	    // count the current form inputs we have (e.g. 2), use that as the new
 	    // index when inserting a new item (e.g. 2)
@@ -41,12 +41,12 @@
 	        e.preventDefault();
 
 	        // add a new tag form (see next code block)
-	        addVisitorForm($collectionHolder, $newLinkLi);
+	        addVisitorForm($collectionHolder, $newLinkSpan);
 	    });
-	    addVisitorForm($collectionHolder, $newLinkLi);
+	    addVisitorForm($collectionHolder, $newLinkSpan);
 	});
 
-	function addVisitorForm($collectionHolder, $newLinkLi) {
+	function addVisitorForm($collectionHolder, $newLinkSpan) {
 	    // Get the data-prototype explained earlier
 	    var prototype = $collectionHolder.data('prototype');
 
@@ -68,7 +68,7 @@
 
 	    // Display the form in the page in an li, before the "Add a tag" link li
 	    var $newFormDiv = $('<div></div>').append(newForm);
-	    $newLinkLi.before($newFormDiv);
+	    $newLinkSpan.before($newFormDiv);
 	}
 	</script>
 {% endjavascripts %}

@@ -59,15 +59,6 @@ class Visitor
     private $discount;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="quantity", type="integer")
-     * @Assert\Range(max=10)
-     
-    private $quantity;
-    */
-
-    /**
      * @ORM\ManyToOne(targetEntity="P4\BilletterieBundle\Entity\Booking", inversedBy="visitors")
      * @ORM\JoinColumn(nullable=false)
      */
