@@ -31,7 +31,7 @@ class Booking
     private $bookingDate;
 
     /**
-     * @ORM\OneToMany(targetEntity="P4\BilletterieBundle\Entity\Visitor", mappedBy="booking")
+     * @ORM\OneToMany(targetEntity="P4\BilletterieBundle\Entity\Visitor", mappedBy="booking", cascade={"persist"})
      */
     private $visitors;
     
@@ -39,7 +39,6 @@ class Booking
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
-     * @Assert\Email
      */
     private $email;
 
@@ -91,6 +90,23 @@ class Booking
         return $this->bookingDate;
     }
 
+    /**
+     * @param Visitor $visitor
+     */
+    public function addVisitor(Visitor $visitor)
+    {
+        $this->visitors[] = $visitor;
+        // On lie le visiteur à la réservation
+        $visitor->setBooking($this);
+    }
+
+    /**
+     * @param Visitor $visitor
+     */
+    public function removeVisitor(Visitor $visitor)
+    {
+        $this->visitors->removeElement($visitor);
+    }
 
     /**
      * Get visitor
@@ -100,18 +116,6 @@ class Booking
     public function getVisitors()
     {
         return $this->visitors;
-    }
-
-    public function addVisitor(Visitor $visitor)
-    {
-        $visitor->addBooking($this);
-
-        $this->visitors->add($visitor);
-    }
-
-    public function removeVisitor(Visitor $visitor)
-    {
-        // ...
     }
 
     /**

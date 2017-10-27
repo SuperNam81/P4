@@ -66,7 +66,7 @@ class Visitor
      
     private $quantity;
     */
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="P4\BilletterieBundle\Entity\Booking", inversedBy="visitors")
      * @ORM\JoinColumn(nullable=false)
@@ -203,30 +203,6 @@ class Visitor
     {
         return $this->discount;
     }
-
-    /**
-     * Set quantity
-     *
-     * @param integer $quantity
-     *
-     * @return Visitor
-     /
-    public function setQuantity($quantity)
-    {
-        $this->quantity = $quantity;
-
-        return $this;
-    }
-
-    /**
-     * Get quantity
-     *
-     * @return int
-     /
-    public function getQuantity()
-    {
-        return $this->quantity;
-    }*/
 
     /**
      * @param Booking $booking
