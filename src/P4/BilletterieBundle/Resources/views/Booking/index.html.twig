@@ -22,23 +22,23 @@
 'bundles/p4billetterie/js/jquery.js'
 'bundles/p4billetterie/js/bootstrap.min.js'
  %}
- 	<script type="text/javascript" src="{{ asset_url }}" /></script>
+
+ <script type="text/javascript" src="{{ asset_url }}" /></script>
+ {% endjavascripts %}
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 	<script type="text/javascript">
-	var $collectionHolder;
-	// setup an "add a tag" link
-	var $addVisitorLink = $('<a href="#" class="add_visitor_link">Ajoutez un visiteur</a>');
-	var $newLinkSpan = $('<span></span>').append($addVisitorLink);
+
 
 	/////// DOM OK ///////
 	$(function() {
-	    // Get the ul that holds the collection of tags
-	    $collectionHolder = $('div.visitors');
-
-	    // add the "add a tag" anchor and li to the tags ul
+		// setup an "add a visitor" link
+		var $addVisitorLink = $('<a href="#" class="add_visitor_link">Ajoutez un visiteur</a>');
+		var $newLinkSpan = $('<span></span>').append($addVisitorLink);		
+	    // Get the div that holds the collection of visitors
+	    var $collectionHolder = $('div.visitors');
+	    // add the "add a visitor" anchor and span to the visitors div
 	    $collectionHolder.append($newLinkSpan);
-
 	    // count the current form inputs we have (e.g. 2), use that as the new
 	    // index when inserting a new item (e.g. 2)
 	    $collectionHolder.data('index', $collectionHolder.find(':input').length);
@@ -46,8 +46,7 @@
 	    $addVisitorLink.on('click', function(e) {
 	        // prevent the link from creating a "#" on the URL
 	        e.preventDefault();
-
-	        // add a new tag form (see next code block)
+	        // add a new visitor form (see next code block)
 	        addVisitorForm($collectionHolder, $newLinkSpan);
 	    });
 	    addVisitorForm($collectionHolder, $newLinkSpan);
@@ -55,37 +54,37 @@
 	    /////// DATEPICKER ///////
 	    // Format FR
 	    $.datepicker.regional['fr'] = {
-		closeText: 'Fermer',
-		prevText: 'Précédent',
-		nextText: 'Suivant',
-		currentText: 'Aujourd\'hui',
-		monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
-		monthNamesShort: ['Janv.','Févr.','Mars','Avril','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'],
-		dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
-		dayNamesShort: ['Dim.','Lun.','Mar.','Mer.','Jeu.','Ven.','Sam.'],
-		dayNamesMin: ['D','L','M','M','J','V','S'],
-		weekHeader: 'Sem.',
-		dateFormat: 'dd/mm/yy',
-		firstDay: 1,
-		isRTL: false,
-		showMonthAfterYear: false,
-		yearSuffix: ''};
+			closeText: 'Fermer',
+			prevText: 'Précédent',
+			nextText: 'Suivant',
+			currentText: 'Aujourd\'hui',
+			monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
+			monthNamesShort: ['Janv.','Févr.','Mars','Avril','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'],
+			dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
+			dayNamesShort: ['Dim.','Lun.','Mar.','Mer.','Jeu.','Ven.','Sam.'],
+			dayNamesMin: ['D','L','M','M','J','V','S'],
+			weekHeader: 'Sem.',
+			dateFormat: 'dd/mm/yy',
+			firstDay: 1,
+			isRTL: false,
+			showMonthAfterYear: false,
+			yearSuffix: ''
+		};
 
-		$.datepicker.setDefaults($.datepicker.regional['fr']);
-		// Intégration à l'input bookingDate
-		$( "#p4_billetteriebundle_booking_bookingDate").datepicker();
-	});
+			$.datepicker.setDefaults($.datepicker.regional['fr']);
+			// Intégration à l'input bookingDate
+			$( "#p4_billetteriebundle_booking_bookingDate").datepicker();
+		});
 
-	// Fonction ajout d'un visiteur supplémentaire
+	// Fonction AJOUT VISITEUR supplémentaire
 	function addVisitorForm($collectionHolder, $newLinkSpan) {
+		console.log('coucou', arguments.callee.caller.toString());
 	    // Get the data-prototype explained earlier
 	    var prototype = $collectionHolder.data('prototype');
-
 	    // get the new index
 	    var index = $collectionHolder.data('index');
-
 	    var newForm = prototype;
-	    // You need this only if you didn't set 'label' => false in your tags field in TaskType
+	    // You need this only if you didn't set 'label' => false in your tags field in BookingType
 	    // Replace '__name__label__' in the prototype's HTML to
 	    // instead be a number based on how many items we have
 	    // newForm = newForm.replace(/__name__label__/g, index);
@@ -93,17 +92,14 @@
 	    // Replace '__name__' in the prototype's HTML to
 	    // instead be a number based on how many items we have
 	    newForm = newForm.replace(/__name__/g, index);
-
 	    // increase the index with one for the next item
 	    $collectionHolder.data('index', index + 1);
 
-	    // Display the form in the page in an li, before the "Add a tag" link li
+	    // Display the form in the page in a div, before the "Add a visitor" link span
 	    var $newFormDiv = $('<div></div>').append(newForm);
 	    $newLinkSpan.before($newFormDiv);
 	}
 	</script>
-
-{% endjavascripts %}
 
 {% endblock %}
 

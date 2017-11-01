@@ -10,4 +10,22 @@ namespace P4\BilletterieBundle\Repository;
  */
 class VisitorRepository extends \Doctrine\ORM\EntityRepository
 {
+	/*public function getDateBirth()
+	{
+		$qb = $this->createQueryBuilder('v');
+
+		// On peut ajouter ce qu'on veut avant
+		$qb
+		->where('v.author = :author')
+		->setParameter('author', 'Marine')
+		;
+
+		// On peut ajouter ce qu'on veut après
+		$qb->orderBy('a.date', 'DESC');
+
+		return $qb
+		->getQuery()
+		->getResult()
+		;
+	}*/
 }

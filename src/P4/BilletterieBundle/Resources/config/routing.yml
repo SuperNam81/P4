@@ -3,6 +3,13 @@ p4_billetterie_homepage:
     defaults:
       _controller: P4BilletterieBundle:Booking:index
 
+p4_billetterie_recap:
+    path:     /booking/{id}
+    defaults:
+      _controller: P4BilletterieBundle:Booking:recap
+    requirements:
+        id: \d+
+        
 p4_billetterie_test:
     path:     /test
     defaults:

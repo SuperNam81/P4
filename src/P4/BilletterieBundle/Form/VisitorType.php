@@ -10,7 +10,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use P4\BilletterieBundle\Entity\Visitor;
 
 class VisitorType extends AbstractType
 {
@@ -21,13 +20,24 @@ class VisitorType extends AbstractType
     {
         $builder
         ->add('name', TextType::class, array(
-            'label' => 'Nom'))
+            'label' => 'Nom',
+            'attr' => array('placeholder' => 'Entrez votre nom'),
+        ))
         ->add('lastname', TextType::class, array(
-            'label' => 'Prénom'))
+            'label' => 'Prénom',
+            'attr' => array('placeholder' => 'Entrez votre prénom'),
+        ))
         ->add('dateBirth', BirthdayType::class, array(
-            'label' => 'Votre date de naissance'))
+            'label' => 'Votre date de naissance',
+            'widget' => 'single_text',
+            'placeholder' => array(
+                'year' => 'Année', 'month' => 'Mois', 'day' => 'Jour',
+            ),
+        ))
         ->add('country', CountryType::class, array(
-            'label' => 'Votre pays'))
+            'label' => 'Votre pays',
+            'placeholder' => 'Sélectionnez votre pays',
+        ))
         ->add('discount', CheckboxType::class, array(
             'label' => 'Tarif préférentiel',     
             'required' => false));

@@ -10,7 +10,6 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use P4\BilletterieBundle\Repository\VisitorRepository;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use P4\BilletterieBundle\Entity\Booking;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -24,7 +23,6 @@ class BookingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        //->add('visitor', VisitorType::class)
         ->add('visitors', CollectionType::class, array(
             'label' => false,
             'entry_type' => VisitorType::class,
@@ -33,7 +31,8 @@ class BookingType extends AbstractType
             'by_reference' => false,
         ))
         ->add('email', EmailType::class, array(
-            'label' => 'Adresse email'
+            'label' => 'Votre email',
+            'attr' => array('placeholder' => 'Entrez votre email'),
         ))
         ->add('ticket', ChoiceType::class, array(
             'label' => 'Type de billet',
@@ -43,10 +42,13 @@ class BookingType extends AbstractType
             ),
         ))
         ->add('bookingDate', TextType::class, array(
-            'label' => 'Choississez une date',
+            'label' => 'Quelle date ?',
             'attr' => array('width' => 50),
+            'attr' => array('placeholder' => 'Choississez une date'),
         ))        
-        ->add('valider', SubmitType::class);
+        ->add('valider', SubmitType::class, array(
+            'attr' => array('class' => 'btn-primary'),
+        ));
     }
     
     /**

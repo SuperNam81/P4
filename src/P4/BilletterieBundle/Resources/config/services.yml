@@ -1,11 +1,6 @@
 services:
 
-#    p4_billetterie.age.age_visitor:
-#        class: P4\BilletterieBundle\Age\AgeVisitor
+    p4_billetterie.age_visitor:
+        class: P4\BilletterieBundle\Age\AgeVisitor
 
-#    p4_billetterie.event_listener.date_birth_listener:
-#        class: P4\BilletterieBundle\EventListener\dateBirthListener
-#        arguments: 
-#            - "@p4_billetterie.age.age_visitor"
-#        tags:
-#            - { name: kernel.event_listener, event: postPersist }
+

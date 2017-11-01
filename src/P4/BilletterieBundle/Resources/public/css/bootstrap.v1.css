@@ -6763,33 +6763,85 @@ button.close {
 
 /* MON CSS */ 
 
+/*
+.jumbotron p
+{
+  font-size: 15px;
+  text-align: right;
+  color: #7E7E7E;
+}
+*/
+
+/*
+@media (min-width: 1600px) 
+{
+  .container {
+    width: 100%;
+  }
+}
+*/
+
+.container {
+  width: 90%;
+}
+
+.jumbotron {
+  padding-top: 750px;
+  background-color: #f1f1f1;
+}
+
+#header 
+{
+  background: url("../img/pyramide-du-louvre-01C.jpg") fixed no-repeat;
+  background-size: 100%;
+  position: relative;
+  height: 700px;
+  text-align: center;
+  border: 0;
+  width: 100%;
+  float: left;
+}
+
+h1
+{
+  font-size: 72px;
+  color: #3c3c3c;
+  text-align: center;
+  margin-top: 70px;
+  /*padding-left: 150px;*/
+}
+
 footer p
 {
-  font-size: 80%;
+  font-size: 15px;
   text-align: right;
   color: #7E7E7E;
 }
 
-@media (min-width: 1200px) 
-{
-  .container {
-    width: 80%;
-  }
+h5, ul {
+  list-style-type: none;
+  padding-left: 0;
 }
 
-/* JUMBOTRON */
-.jumbotron 
-{
-  background: url("../img/pyramide-du-louvre-01.jpg") fixed no-repeat top;
-  height: 600px;
-  text-align: center;
+/* Nom 
+#p4_billetteriebundle_booking_visitors_0_name {
+  max-width: 200px;
+}*/
+
+/* Email */
+#p4_billetteriebundle_booking_email {
+  max-width: 30%;
 }
 
-.jumbotron h1, p
-{
-  color: #3c3c3c;
+/* Ticket */
+#p4_billetteriebundle_booking_ticket {
+  max-width: 150px;
 }
 
+/* Date de réservation */
+#p4_billetteriebundle_booking_bookingDate {
+  max-width: 150px;
+}
 
 
 

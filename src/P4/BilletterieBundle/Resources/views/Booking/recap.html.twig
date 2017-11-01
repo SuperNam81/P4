@@ -1,0 +1,62 @@
+{% extends "P4BilletterieBundle::layout.html.twig" %}
+{% block title %}
+  {{ parent() }} – Récapitulatif
+{% endblock %}
+
+{% block body %}
+
+{# {{ form(form) }} #}
+<div>
+	<h2>Voici le récapitulatif de votre réservation</h2>
+	<h5>Réservation n° {{ booking.id }} </h5>
+	<ul>
+		{% for visitor in listVisitors %}
+			<li>
+			  Nom : {{ visitor.name }}
+			</li>
+			<li>
+			  Prénom : {{ visitor.lastname }}
+			</li>
+			<li>
+			  Date de naissance : {{ visitor.dateBirth|date('d/m/Y') }}
+			</li>
+			<li>
+			  Pays : {{ visitor.country }}
+			</li>
+			<li>
+			  Tarif préférentiel : {{ visitor.discount }}
+			</li>
+			<br>
+		{% endfor %}
+	</ul>
+	Date choisie : {{ booking.bookingDate }}<br>
+	Mail de contact : {{ booking.email }}<br>
+
+	{% for age in age %}
+		{{ age.age }}
+	{% endfor %}	
+	
+</div>
+
+
+{# JAVASCRIPT #}
+{% javascripts filter='jsqueeze' 
+'bundles/p4billetterie/js/jquery.js'
+'bundles/p4billetterie/js/bootstrap.min.js'
+ %}
+ 	<script type="text/javascript" src="{{ asset_url }}" /></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+	<script type="text/javascript">
+
+
+	/////// DOM OK ///////
+	$(function() {
+
+	});
+
+	</script>
+
+{% endjavascripts %}
+{% endblock %}
+

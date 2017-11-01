@@ -22,28 +22,31 @@
   </head>
 
   <body>
+
+  <div id="header">
+    <h1>Musée du Louvre</h1>
+    <p>
+      Achetez votre billet en quelques clics.
+    </p>
+  </div>
+
   <div class="container">
-    <div id="header" class="jumbotron">
-      <h1>Musée du Louvre</h1>
-      <p>
-        Achetez dès maintenant votre billet.
-      </p>
+    <div class="jumbotron">
+      <div class="container-fluid">
+
+        {# BODY #}
+        {% block body %}
+        {% endblock %}
+
+        <hr>
+
+        {# FOOTER #}
+        <footer>
+          <p>Musée du Louvre © {{ 'now'|date('Y') }}</p>
+        </footer>
+      </div>
     </div>
-  
 
-    <div class="container-fluid">
-
-      {# BODY #}
-      {% block body %}
-      {% endblock %}
-
-      <hr>
-
-      {# FOOTER #}
-      <footer>
-        <p>Musée du Louvre © {{ 'now'|date('Y') }}.</p>
-      </footer>
-    </div>
   </div>
   </body>
 </html>
