@@ -3,7 +3,35 @@
 {% block body %}
 
 <div>
-  {{ form(form) }}
+	{# {{ form(form) }} #}
+	<h2>Test</h2>
+	 {#
+	{% for age in listVisitors %}
+		{{ age }}
+	{% endfor %}
+	#}
+	 {{ age }} 
+
 </div>
 
+
+{# JAVASCRIPT #}
+{% javascripts filter='jsqueeze' 
+'bundles/p4billetterie/js/jquery.js'
+'bundles/p4billetterie/js/bootstrap.min.js'
+ %}
+ 	<script type="text/javascript" src="{{ asset_url }}" /></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+	<script type="text/javascript">
+
+
+	/////// DOM OK ///////
+	$(function() {
+
+	});
+
+	</script>
+
+{% endjavascripts %}
 {% endblock %}

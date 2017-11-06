@@ -32,10 +32,10 @@
 	Date choisie : {{ booking.bookingDate }}<br>
 	Mail de contact : {{ booking.email }}<br>
 
-	{% for age in age %}
-		{{ age.age }}
+	{% for age in listVisitors %}
+		{{ age.dateBirth|date('Y') }}
 	{% endfor %}	
-	
+
 </div>
 
 
