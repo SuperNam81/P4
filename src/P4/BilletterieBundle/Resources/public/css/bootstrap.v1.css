@@ -6823,6 +6823,20 @@ h5, ul {
   padding-left: 0;
 }
 
+.recap {
+  color: #7E7E7E;
+  font-size: 12px;
+}
+
+.visiteur {
+  color: #666666;
+}
+
+#prixTotal {
+  font-size: 18px;
+}
+
+
 /* Nom 
 #p4_billetteriebundle_booking_visitors_0_name {
   max-width: 200px;

@@ -47,12 +47,12 @@ class Booking
      *
      * @ORM\Column(name="ticket", type="boolean")
      */
-    private $ticket;
-
+    public $ticket;
+    
+    public $prixTotal;    
 
     public function __construct()
     {
-        //$this->bookingDate = new \Datetime();
         $this->visitors = new ArrayCollection();
     }
 

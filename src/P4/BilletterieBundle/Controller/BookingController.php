@@ -46,7 +46,8 @@ class BookingController extends Controller
 		
 		foreach ($listVisitors as $visitor) {
 			$visitor->age = $this->container->get('p4_billetterie.age_visitor')->age($visitor->getDateBirth());
-			$visitor->prix = $this->container->get('p4_billetterie.age_visitor')->prixCalcul($visitor->age);
+			$visitor->prix = $this->container->get('p4_billetterie.age_visitor')->prixCalcul($visitor->age, $visitor->getDiscount(), $booking->ticket);
+			$booking->prixTotal += $visitor->prix;
 		}
 
 		return $this->render('P4BilletterieBundle:Booking:recap.html.twig', array(
@@ -54,32 +55,6 @@ class BookingController extends Controller
 		  'listVisitors' => $listVisitors,
 		));
 	}
-
-	/*
-	public function recapAction($id, Booking $booking)
-	{
-		$em = $this->getDoctrine()->getManager();
-
-		$booking = $em->getRepository('P4BilletterieBundle:Booking')->find($id);
-
-		$listVisitors = $em
-		->getRepository('P4BilletterieBundle:Visitor')
-		->findBy(array('booking' => $booking))
-		;
-
-		foreach ($listVisitors as $dateBirth) {
-			$dateBirth->getDateBirth();
-			$age = $this->container->get('p4_billetterie.age_visitor');
-			$age->ageCalcul($dateBirth);
-		}
-
-		return $this->render('P4BilletterieBundle:Booking:recap.html.twig', array(
-		  'booking' => $booking,
-		  'listVisitors' => $listVisitors,
-		  'age' => $age,
-		));
-	}
-	*/
 
 	/* Avec un tableau de DateBirth */
  	public function testAction($id, Request $request)
@@ -99,17 +74,5 @@ class BookingController extends Controller
 		  'booking' => $booking,
 		  'listVisitors' => $listVisitors,
 		));
-	}
-
-	/* DateBirth en dur OK
-	public function testAction(Request $request)
-	{
-		$dateBirth = new \DateTime('1975-03-21');
-		$age = $this->container->get('p4_billetterie.age_visitor')->ageCalcul($dateBirth);
-
-		return $this->render('P4BilletterieBundle:Booking:test.html.twig', array(
-		  'age' => $age,
-		));
-	}
-	*/   
+	} 
 }
