@@ -21,21 +21,23 @@
 			  Date de naissance : {{ visitor.dateBirth|date('d/m/Y') }}
 			</li>
 			<li>
+			  Age : {{ visitor.age }}
+			</li>			
+			<li>
 			  Pays : {{ visitor.country }}
 			</li>
 			<li>
 			  Tarif préférentiel : {{ visitor.discount }}
 			</li>
+			<li>
+			  Prix : 
+			</li>
 			<br>
+
 		{% endfor %}
 	</ul>
 	Date choisie : {{ booking.bookingDate }}<br>
 	Mail de contact : {{ booking.email }}<br>
-
-	{% for age in listVisitors %}
-		{{ age.dateBirth|date('Y') }}
-	{% endfor %}	
-
 </div>
 
 

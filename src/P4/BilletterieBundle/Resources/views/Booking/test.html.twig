@@ -5,12 +5,12 @@
 <div>
 	{# {{ form(form) }} #}
 	<h2>Test</h2>
-	 {#
-	{% for age in listVisitors %}
-		{{ age }}
+	 
+	{% for visitor in listVisitors %}
+		{{ visitor.age }}
 	{% endfor %}
-	#}
-	 {{ age }} 
+	
+	{# {{ age }} #}
 
 </div>
 

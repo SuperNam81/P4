@@ -63,7 +63,9 @@ class Visitor
      * @ORM\JoinColumn(nullable=false)
      */
     private $booking;
-    
+
+    public $age;
+    public $prix;
 
     /**
      * Get id
