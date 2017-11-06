@@ -2,7 +2,11 @@ services:
 
     p4_billetterie.age_visitor:
         class: P4\BilletterieBundle\Age\AgeVisitor
-
+        arguments:
+          - %tarifgratuit%
+          - %tarifenfant%
+          - %tarifnormal%
+          - %tarifsenior%
 
 
 

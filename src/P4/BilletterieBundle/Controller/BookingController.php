@@ -46,7 +46,7 @@ class BookingController extends Controller
 		
 		foreach ($listVisitors as $visitor) {
 			$visitor->age = $this->container->get('p4_billetterie.age_visitor')->age($visitor->getDateBirth());
-			$visitor->prix = $this->container->get('p4_billetterie.age_visitor')->prixCalcul($visitor->getDateBirth());
+			$visitor->prix = $this->container->get('p4_billetterie.age_visitor')->prixCalcul($visitor->age);
 		}
 
 		return $this->render('P4BilletterieBundle:Booking:recap.html.twig', array(
