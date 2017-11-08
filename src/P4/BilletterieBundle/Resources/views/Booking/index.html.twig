@@ -2,20 +2,12 @@
 
 {% block body %}
 
-{# {{ form(form) }} #}
 <div class="form-group">
 	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 		<div class="visitors" data-prototype="{{ form_widget(form.visitors.vars.prototype)|e('html_attr') }}">
 		</div>
 	{{ form_end(form) }}
 </div>
-
-
-<!--
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.js"></script> 
--->
 
 {# JAVASCRIPT #}
 {% javascripts filter='jsqueeze' 
@@ -98,6 +90,7 @@ $(function() {
 // Fonction AJOUT VISITEUR supplémentaire
 function addVisitorForm($collectionHolder, $newLinkSpan) {
 	console.log('coucou', arguments.callee.caller.toString());
+    var $compteur = $('#compteurVisiteur').text() + 1;
     // Get the data-prototype explained earlier
     var prototype = $collectionHolder.data('prototype');
     // get the new index
@@ -113,6 +106,9 @@ function addVisitorForm($collectionHolder, $newLinkSpan) {
     newForm = newForm.replace(/__name__/g, index);
     // increase the index with one for the next item
     $collectionHolder.data('index', index + 1);
+       
+    //var $compteurVisiteur = $('<div>Visiteur <span class="compteurVisiteur">1</span></div>');
+    //$('#compteurVisiteur').text() +1;
 
     // Display the form in the page in a div, before the "Add a visitor" link span
     var $newFormDiv = $('<div></div>').append(newForm);

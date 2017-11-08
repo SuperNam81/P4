@@ -2,18 +2,12 @@
 
 {% block body %}
 
-<div>
-	{# {{ form(form) }} #}
-	<h2>Test</h2>
-	 
-	{% for visitor in listVisitors %}
-		{{ visitor.age }}
-	{% endfor %}
-	
-	{# {{ age }} #}
-
+<div class="form-group">
+	{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+		<div class="visitors" data-prototype="{{ form_widget(form.visitors.vars.prototype)|e('html_attr') }}">
+		</div>
+	{{ form_end(form) }}
 </div>
-
 
 {# JAVASCRIPT #}
 {% javascripts filter='jsqueeze' 
@@ -21,17 +15,106 @@
 'bundles/p4billetterie/js/bootstrap.min.js'
  %}
  	<script type="text/javascript" src="{{ asset_url }}" /></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ {% endjavascripts %}
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-	<script type="text/javascript">
+<script type="text/javascript">
 
+/////// DOM OK ///////
+$(function() {
+	// setup an "add a visitor" link
+	var $addVisitorLink = $('<a href="#" class="add_visitor_link">Ajoutez un visiteur</a>');
+	var $newLinkSpan = $('<span></span>').append($addVisitorLink);		
+    // Get the div that holds the collection of visitors
+    var $collectionHolder = $('div.visitors');
+    // add the "add a visitor" anchor and span to the visitors div
+    $collectionHolder.append($newLinkSpan);
+    // count the current form inputs we have (e.g. 2), use that as the new
+    // index when inserting a new item (e.g. 2)
+    $collectionHolder.data('index', $collectionHolder.find(':input').length);
 
-	/////// DOM OK ///////
-	$(function() {
+    $addVisitorLink.on('click', function(e) {
+        // prevent the link from creating a "#" on the URL
+        e.preventDefault();
+        // add a new visitor form (see next code block)
+        addVisitorForm($collectionHolder, $newLinkSpan);
+    });
+    addVisitorForm($collectionHolder, $newLinkSpan);
 
-	});
+    /////// DATEPICKER ///////
+    // Format FR
+    $.datepicker.regional['fr'] = {
+		closeText: 'Fermer',
+		prevText: 'Précédent',
+		nextText: 'Suivant',
+		currentText: 'Aujourd\'hui',
+		monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
+		monthNamesShort: ['Janv.','Févr.','Mars','Avril','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'],
+		dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
+		dayNamesShort: ['Dim.','Lun.','Mar.','Mer.','Jeu.','Ven.','Sam.'],
+		dayNamesMin: ['D','L','M','M','J','V','S'],
+		weekHeader: 'Sem.',
+		dateFormat: 'dd/mm/yy',
+		minDate: new Date(2016, 12, 01), 
+        maxDate: new Date(2019, 12, 01), 
+		beforeShowDay: joursIndispo,
+		firstDay: 1,
+		isRTL: false,
+		showMonthAfterYear: false,
+		yearSuffix: ''
+	};
 
-	</script>
+	function joursIndispo(date){
+        var day = date.getDay(), Sunday = 0, Monday = 1, Tuesday = 2, Wednesday = 3, Thursday = 4, Friday = 5, Saturday = 6;
+        var joursFeries = [[5, 01], [11, 01], [12, 25]];
+        var joursFermes = [[Tuesday], [Sunday]];
+        for (var i = 0; i < joursFermes.length; i++) {
+            if (day == joursFermes[i][0]) {
+                return [false];
+            }           
+        }
+        for (i = 0; i < joursFeries.length; i++) {
+            if (date.getMonth() == joursFeries[i][0] - 1
+            && date.getDate() == joursFeries[i][1]) {
+                return [false, joursFeries[i][2]];
+            }
+        }
+        return [true];
+    }	
 
-{% endjavascripts %}
+	$.datepicker.setDefaults($.datepicker.regional['fr']);
+	// Intégration à l'input bookingDate
+	$( "#p4_billetteriebundle_booking_bookingDate").datepicker();
+});
+
+// Fonction AJOUT VISITEUR supplémentaire
+function addVisitorForm($collectionHolder, $newLinkSpan) {
+	console.log('coucou', arguments.callee.caller.toString());
+    var $compteur = $('#compteurVisiteur').text() + 1;
+    // Get the data-prototype explained earlier
+    var prototype = $collectionHolder.data('prototype');
+    // get the new index
+    var index = $collectionHolder.data('index');
+    var newForm = prototype;
+    // You need this only if you didn't set 'label' => false in your tags field in BookingType
+    // Replace '__name__label__' in the prototype's HTML to
+    // instead be a number based on how many items we have
+    // newForm = newForm.replace(/__name__label__/g, index);
+
+    // Replace '__name__' in the prototype's HTML to
+    // instead be a number based on how many items we have
+    newForm = newForm.replace(/__name__/g, index);
+    // increase the index with one for the next item
+    $collectionHolder.data('index', index + 1);
+       
+    //var $compteurVisiteur = $('<div>Visiteur <span class="compteurVisiteur">1</span></div>');
+    //$('#compteurVisiteur').text() +1;
+
+    // Display the form in the page in a div, before the "Add a visitor" link span
+    var $newFormDiv = $('<div></div>').append(newForm);
+    $newLinkSpan.before($newFormDiv);
+}
+</script>
+
 {% endblock %}
+

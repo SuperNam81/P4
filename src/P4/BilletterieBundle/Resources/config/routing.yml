@@ -11,8 +11,6 @@ p4_billetterie_recap:
         id: \d+
         
 p4_billetterie_test:
-    path:     /test/{id}
+    path:     /test
     defaults:
       _controller: P4BilletterieBundle:Booking:test
-    requirements:
-        id: \d+

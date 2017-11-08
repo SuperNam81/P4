@@ -12,32 +12,34 @@
 	<ul>
 		{% set i = 0 %}
 		{% for visitor in listVisitors %}
-			{% set i = i + 1 %}
-			<li><strong class="visiteur">Visiteur {{ i }}</strong></li>
-			<li>
-				<span class="recap">Nom : </span>{{ visitor.name }}
-			</li>
-			<li>
-				<span class="recap">Prénom : </span>{{ visitor.lastname }}
-			</li>
-			<li>
-				<span class="recap">Date de naissance : </span>{{ visitor.dateBirth|date('d/m/Y') }}
-			</li>
-			<li>
-				<span class="recap">Age : </span>{{ visitor.age }} ans
-			</li>			
-			<li>
-				<span class="recap">Pays : </span>{{ visitor.country }}
-			</li>
-			<li>
-				<span class="recap">Tarif préférentiel : </span>
-				{% if visitor.discount == 0 %} Non
-				{% elseif visitor.discount == 1 %} Oui
-				{% endif %}
-			</li>
-			<li>
-				<span class="recap">Prix : </span>{{ visitor.prix }}€
-			</li><br>
+			<div class="recapDiv">
+				{% set i = i + 1 %}
+				<li><strong class="visiteur">Visiteur {{ i }}</strong></li>
+				<li>
+					<span class="recap">Nom : </span>{{ visitor.name }}
+				</li>
+				<li>
+					<span class="recap">Prénom : </span>{{ visitor.lastname }}
+				</li>
+				<li>
+					<span class="recap">Date de naissance : </span>{{ visitor.dateBirth|date('d/m/Y') }}
+				</li>
+				<li>
+					<span class="recap">Age : </span>{{ visitor.age }} ans
+				</li>			
+				<li>
+					<span class="recap">Pays : </span>{{ visitor.country }}
+				</li>
+				<li>
+					<span class="recap">Tarif préférentiel : </span>
+					{% if visitor.discount == 0 %} Non
+					{% elseif visitor.discount == 1 %} Oui
+					{% endif %}
+				</li>
+				<li>
+					<span class="recap">Prix : </span>{{ visitor.prix }}€
+				</li><br>
+			</div>
 		{% endfor %}
 	</ul>
 	<div>
@@ -45,9 +47,9 @@
 		{% if booking.ticket == 0 %} Demi-journée
 		{% elseif booking.ticket == 1 %} Journée
 		{% endif %}<br>
-		<span class="recap">Date choisie : le </span>{{ booking.bookingDate }}<br>
+		<span class="recap">Date choisie : </span>{{ booking.bookingDate }}<br>
 		<span class="recap">Mail de contact : </span>{{ booking.email }}<br>
-		<span class="recap">Prix total de votre commande : </span><strong id="prixTotal">{{ booking.prixTotal }}€</strong>
+		<span>Prix total de votre commande : </span><strong id="prixTotal">{{ booking.prixTotal }}€</strong>
 	</div>
 </div>
 

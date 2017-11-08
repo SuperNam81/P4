@@ -56,23 +56,22 @@ class BookingController extends Controller
 		));
 	}
 
-	/* Avec un tableau de DateBirth */
- 	public function testAction($id, Request $request)
+ 	public function testAction(Request $request)
 	{
-		$em = $this->getDoctrine()->getManager();
-		$booking = $em->getRepository('P4BilletterieBundle:Booking')->find($id);
-		$listVisitors = $em
-		->getRepository('P4BilletterieBundle:Visitor')
-		->findBy(array('booking' => $booking))
-		;	
+		$booking = new Booking();
+		$form = $this->createForm(BookingType::class, $booking);
 
-		foreach ($listVisitors as $visitor) {
-			$visitor->age = $this->container->get('p4_billetterie.age_visitor')->age($visitor->getDateBirth());
+		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())  
+		{
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($booking);
+			$em->flush();
+
+			return $this->redirectToRoute('p4_billetterie_recap', array('id' => $booking->getId()));
 		}
 
 		return $this->render('P4BilletterieBundle:Booking:test.html.twig', array(
-		  'booking' => $booking,
-		  'listVisitors' => $listVisitors,
+			'form' => $form->createView(),
 		));
 	} 
 }

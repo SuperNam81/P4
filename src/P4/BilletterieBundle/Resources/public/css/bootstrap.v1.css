@@ -6780,19 +6780,25 @@ button.close {
   }
 }
 */
-
+body {
+  background: url("../img/pyramide-du-louvre-01D.jpg") fixed no-repeat;
+  background-size: 100%;
+  position: relative;
+  height: 900px;
+}
 .container {
   width: 90%;
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 .jumbotron {
   padding-top: 750px;
-  background-color: #f1f1f1;
+  background-color: rgba(241, 241, 241, 0.9);
 }
 
 #header 
 {
-  background: url("../img/pyramide-du-louvre-01C.jpg") fixed no-repeat;
+  background: url("../img/pyramide-du-louvre-01D.jpg") fixed no-repeat;
   background-size: 100%;
   position: relative;
   height: 700px;
@@ -6818,6 +6824,8 @@ footer p
   color: #7E7E7E;
 }
 
+
+/* Page de RECAP */
 h5, ul {
   list-style-type: none;
   padding-left: 0;
@@ -6826,6 +6834,12 @@ h5, ul {
 .recap {
   color: #7E7E7E;
   font-size: 12px;
+}
+
+.recapDiv {
+  display: inline-block;
+  /*justify-content: center;*/
+  margin-right: 50px;
 }
 
 .visiteur {
