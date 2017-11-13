@@ -2,6 +2,9 @@
 
 namespace P4\BilletterieBundle\Repository;
 
+use Doctrine\ORM\Query\ResultSetMapping;
+use Doctrine\ORM\Query\ResultSetMappingBuilder;
+
 /**
  * VisitorRepository
  *
@@ -9,23 +12,35 @@ namespace P4\BilletterieBundle\Repository;
  * repository methods below.
  */
 class VisitorRepository extends \Doctrine\ORM\EntityRepository
-{
-	/*public function getDateBirth()
+{	
+	public function getDateVisitorMax () 
 	{
-		$qb = $this->createQueryBuilder('v');
 
-		// On peut ajouter ce qu'on veut avant
-		$qb
-		->where('v.author = :author')
-		->setParameter('author', 'Marine')
-		;
+		$rsm = new ResultSetMappingBuilder($this->_em);
 
-		// On peut ajouter ce qu'on veut après
-		$qb->orderBy('a.date', 'DESC');
+		$rsm->addRootEntityFromClassMetadata('P4\BilletterieBundle\Entity\Visitor', 'v', array('id' => 'id1',));
 
-		return $qb
-		->getQuery()
-		->getResult()
-		;
-	}*/
+		$rsm->addJoinedEntityFromClassMetadata('P4\BilletterieBundle\Entity\Booking', 'b', 'v', 'id', array('id' => 'id2',));
+
+		$sql = 'SELECT COUNT(v.booking_id) AS nbrVisiteurParBooking, b.bookingDate FROM p4_visitor AS v INNER JOIN p4_booking AS b ON v.booking_id = b.id GROUP BY b.bookingDate HAVING nbrVisiteurParBooking >= 5 ORDER BY b.bookingDate DESC';
+		
+		$query = $this->_em->createNativeQuery($sql, $rsm);
+		return $query->getScalarResult();
+	}
+
+	public function getDateVisitorMaxArray ()
+	{
+		$dates = $this->getDateVisitorMax();
+
+		$res = "[";
+		foreach ($dates as $key => $value) {
+			$res = $res . '"' .$value['b_bookingDate'] . '"';
+			if ($key < sizeof($dates)-1 )
+			{
+				$res = $res . ',';
+			}
+		}
+		$res = $res . ']';
+		return $res;
+	}		
 }

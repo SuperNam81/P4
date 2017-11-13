@@ -2,6 +2,8 @@
 
 namespace P4\BilletterieBundle\Repository;
 
+use Doctrine\ORM\Query\ResultSetMapping;
+
 /**
  * BookingRepository
  *
@@ -10,25 +12,18 @@ namespace P4\BilletterieBundle\Repository;
  */
 class BookingRepository extends \Doctrine\ORM\EntityRepository
 {
-	/*public function getDateBirth()
+	public function getDateVisitorMax () 
 	{
-		$qb = $this->createQueryBuilder('v');
+		$rsm = new ResultSetMapping();
 
-		// On peut ajouter ce qu'on veut avant
-		$qb
-		->where('a.author = :author')
-		->setParameter('author', 'Marine')
-		;
-
-		// On applique notre condition sur le QueryBuilder
-		$this->whereCurrentYear($qb);
-
-		// On peut ajouter ce qu'on veut après
-		$qb->orderBy('a.date', 'DESC');
-
-		return $qb
-		->getQuery()
-		->getResult()
-		;
-	}*/
+		$rsm->addEntityResult('P4\BilletterieBundle\Entity\Visitor', 'v');
+		$rsm->addEntityResult('P4\BilletterieBundle\Entity\Booking', 'b');
+		$rsm->addFieldResult('v', 'booking_id', 'booking_id');
+		$rsm->addFieldResult('b', 'bookingDate', 'bookingDate');
+		
+		$sql = 'SELECT COUNT(v.booking_id) AS nbrVisiteurParBooking, b.bookingDate FROM p4_visitor AS v INNER JOIN p4_booking AS b ON v.booking_id = b.id GROUP BY b.bookingDate HAVING nbrVisiteurParBooking >= 5';
+		
+		$query = $this->_em->createNativeQuery($sql, $rsm);
+		return $query->getResult();
+	}	
 }
