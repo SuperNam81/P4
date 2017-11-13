@@ -15,7 +15,6 @@ class VisitorRepository extends \Doctrine\ORM\EntityRepository
 {	
 	public function getDateVisitorMax () 
 	{
-
 		$rsm = new ResultSetMappingBuilder($this->_em);
 
 		$rsm->addRootEntityFromClassMetadata('P4\BilletterieBundle\Entity\Visitor', 'v', array('id' => 'id1',));
@@ -34,9 +33,8 @@ class VisitorRepository extends \Doctrine\ORM\EntityRepository
 
 		$res = "[";
 		foreach ($dates as $key => $value) {
-			$res = $res . '"' .$value['b_bookingDate'] . '"';
-			if ($key < sizeof($dates)-1 )
-			{
+			$res = $res . '"' . $value['b_bookingDate'] . '"';
+			if ($key < sizeof($dates) - 1) {
 				$res = $res . ',';
 			}
 		}

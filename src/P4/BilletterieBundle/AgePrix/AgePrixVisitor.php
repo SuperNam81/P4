@@ -1,11 +1,11 @@
 <?php
-// src/P4/BilletterieBundle/Age/AgeVisitor.php
+// src/P4/BilletterieBundle/AgePrix/AgePrixVisitor.php
 
-namespace P4\BilletterieBundle\Age;
+namespace P4\BilletterieBundle\AgePrix;
 
 use Doctrine\ORM\EntityManagerInterface;
 
-class AgeVisitor
+class AgePrixVisitor
 {
   private $tarifgratuit;
   private $tarifenfant;
@@ -22,7 +22,7 @@ class AgeVisitor
     $this->tarifpreferentiel = $tarifpreferentiel;
   }
 
-  public function age($dateBirth)
+  public function ageCalcul($dateBirth)
   {  
     $date = new \DateTime();
     $age = $date->diff($dateBirth, true)->y;

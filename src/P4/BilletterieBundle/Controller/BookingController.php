@@ -31,8 +31,12 @@ class BookingController extends Controller
 			return $this->redirectToRoute('p4_billetterie_recap', array('id' => $booking->getId()));
 		}
 
+		$em = $this->getDoctrine()->getManager();
+		$dateVisitorMax = $em->getRepository('P4BilletterieBundle:Visitor')->getDateVisitorMaxArray();	
+
 		return $this->render('P4BilletterieBundle:Booking:index.html.twig', array(
 			'form' => $form->createView(),
+			'dateVisitorMax' => $dateVisitorMax,
 		));
 	}
 	
@@ -48,8 +52,8 @@ class BookingController extends Controller
 		;
 		
 		foreach ($listVisitors as $visitor) {
-			$visitor->age = $this->container->get('p4_billetterie.age_visitor')->age($visitor->getDateBirth());
-			$visitor->prix = $this->container->get('p4_billetterie.age_visitor')->prixCalcul($visitor->age, $visitor->getDiscount(), $booking->ticket);
+			$visitor->age = $this->container->get('p4_billetterie.ageprix_visitor')->ageCalcul($visitor->getDateBirth());
+			$visitor->prix = $this->container->get('p4_billetterie.ageprix_visitor')->prixCalcul($visitor->age, $visitor->getDiscount(), $booking->ticket);
 			$booking->prixTotal += $visitor->prix;
 		}
 

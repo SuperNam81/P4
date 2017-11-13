@@ -12,18 +12,5 @@ use Doctrine\ORM\Query\ResultSetMapping;
  */
 class BookingRepository extends \Doctrine\ORM\EntityRepository
 {
-	public function getDateVisitorMax () 
-	{
-		$rsm = new ResultSetMapping();
-
-		$rsm->addEntityResult('P4\BilletterieBundle\Entity\Visitor', 'v');
-		$rsm->addEntityResult('P4\BilletterieBundle\Entity\Booking', 'b');
-		$rsm->addFieldResult('v', 'booking_id', 'booking_id');
-		$rsm->addFieldResult('b', 'bookingDate', 'bookingDate');
-		
-		$sql = 'SELECT COUNT(v.booking_id) AS nbrVisiteurParBooking, b.bookingDate FROM p4_visitor AS v INNER JOIN p4_booking AS b ON v.booking_id = b.id GROUP BY b.bookingDate HAVING nbrVisiteurParBooking >= 5';
-		
-		$query = $this->_em->createNativeQuery($sql, $rsm);
-		return $query->getResult();
-	}	
+	
 }
