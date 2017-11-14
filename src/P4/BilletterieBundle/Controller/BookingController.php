@@ -27,10 +27,10 @@ class BookingController extends Controller
 			$em = $this->getDoctrine()->getManager();
 			$em->persist($booking);
 			$em->flush();
-
+			// Après enregistrement en bdd, récapitulatif
 			return $this->redirectToRoute('p4_billetterie_recap', array('id' => $booking->getId()));
 		}
-
+		// Récupération des dates où le nombre de visiteur > 5
 		$em = $this->getDoctrine()->getManager();
 		$dateVisitorMax = $em->getRepository('P4BilletterieBundle:Visitor')->getDateVisitorMaxArray();	
 
@@ -43,20 +43,19 @@ class BookingController extends Controller
 	public function recapAction($id, Booking $booking)
 	{
 		$em = $this->getDoctrine()->getManager();
-
+		// Récupération de la réservation
 		$booking = $em->getRepository('P4BilletterieBundle:Booking')->find($id);
-
+		// Récupération des visiteurs liés à la réservation
 		$listVisitors = $em
 		->getRepository('P4BilletterieBundle:Visitor')
 		->findBy(array('booking' => $booking))
 		;
-		
+		// Calcul de l'age, du prix par visiteur et du prix total
 		foreach ($listVisitors as $visitor) {
 			$visitor->age = $this->container->get('p4_billetterie.ageprix_visitor')->ageCalcul($visitor->getDateBirth());
 			$visitor->prix = $this->container->get('p4_billetterie.ageprix_visitor')->prixCalcul($visitor->age, $visitor->getDiscount(), $booking->ticket);
 			$booking->prixTotal += $visitor->prix;
 		}
-
 		return $this->render('P4BilletterieBundle:Booking:recap.html.twig', array(
 		  'booking' => $booking,
 		  'listVisitors' => $listVisitors,
@@ -76,17 +75,17 @@ class BookingController extends Controller
 			return $this->redirectToRoute('p4_billetterie_recap', array('id' => $booking->getId()));
 		}	
 
-		/*	Is
-		$rsm = new ResultSetMappingBuilder($this->_em);
-		$rsm->addRootEntityFromClassMetadata('P4\BilletterieBundle\Entity\Visitor', 'v');
-		$rsm->addJoinedEntityFromClassMetadata('P4\BilletterieBundle\Entity\Booking', 'b');
+		/*	I */
+		// $rsm = new ResultSetMappingBuilder($this->_em);
+		// $rsm->addRootEntityFromClassMetadata('P4\BilletterieBundle\Entity\Visitor', 'v');
+		// $rsm->addJoinedEntityFromClassMetadata('P4\BilletterieBundle\Entity\Booking', 'b');
 
-		$sql = 'SELECT COUNT(v.booking_id) AS nbrVisiteurParBooking, b.bookingDate FROM p4_visitor AS v INNER JOIN p4_booking AS b ON v.booking_id = b.id GROUP BY b.bookingDate HAVING nbrVisiteurParBooking >= 5';
+		// $sql = 'SELECT COUNT(v.booking_id) AS nbrVisiteurParBooking, b.bookingDate FROM p4_visitor AS v INNER JOIN p4_booking AS b ON v.booking_id = b.id GROUP BY b.bookingDate HAVING nbrVisiteurParBooking >= 5';
 		 
-		$query = $this->_em->createNativeQuery($sql, $rsm);
-		//$query->setParameter(':userId', $_userId);
-		return $query->getScalarResult();
-		*/	
+		// $query = $this->_em->createNativeQuery($sql, $rsm);
+		// //$query->setParameter(':userId', $_userId);
+		// return $query->getScalarResult();
+			
 
 		/* II */
 		// init vars
@@ -124,12 +123,9 @@ class BookingController extends Controller
 		// $query->setParameter('userId', $_search->getUser()->getId());
 		
 
-
 		/* III */
 		$em = $this->getDoctrine()->getManager();
 		$dateVisitorMax = $em->getRepository('P4BilletterieBundle:Visitor')->getDateVisitorMaxArray();	
-		
-
 
 
 		/* IV */
@@ -155,11 +151,10 @@ class BookingController extends Controller
 		// $query = $this->_em->createNativeQuery($sql, $rsm);
 		// $query->setParameter("userID", $userID);
 		// $query->setParameter("status", File::STATUS_ARCHIVED);
-
 		// $result = $query->getResult();
 		
 
-		
+		/* V */
 		//$em = $this->getDoctrine()->getManager()
 		// $rsm = new ResultSetMappingBuilder($this->getDoctrine()->getManager());
 
