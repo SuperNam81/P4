@@ -6,13 +6,13 @@
 {% block body %}
 
 {# {{ form(form) }} #}
-<div>
+<div class="recapDiv1">
 	<h2>Voici le récapitulatif de votre réservation</h2>
 	<h3>Réservation n° {{ booking.id }} </h3>
 	<ul>
 		{% set i = 0 %}
 		{% for visitor in listVisitors %}
-			<div class="recapDiv">
+			<div class="recapDiv2">
 				{% set i = i + 1 %}
 				<li><strong class="visiteur">Visiteur {{ i }}</strong></li>
 				<li>
@@ -48,8 +48,9 @@
 		{% elseif booking.ticket == 1 %} Journée
 		{% endif %}<br>
 		<span class="recap">Date choisie : </span>{{ booking.bookingDate }}<br>
-		<span class="recap">Mail de contact : </span>{{ booking.email }}<br>
-		<span>Prix total de votre commande : </span><strong id="prixTotal">{{ booking.prixTotal }}€</strong>
+		<span class="recap">Mail de contact : </span>{{ booking.email }}<br><br>
+		<span>Prix total de votre commande</span><br>
+		<strong id="prixTotal">{{ booking.prixTotal }}€</strong>
 	</div>
 </div>
 

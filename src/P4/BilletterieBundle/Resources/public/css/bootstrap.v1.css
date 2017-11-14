@@ -6761,89 +6761,94 @@ button.close {
 
 
 
-/* MON CSS */ 
+/**** MON CSS ****/
 
-/*
-.jumbotron p
-{
-  font-size: 15px;
-  text-align: right;
-  color: #7E7E7E;
-}
-*/
 
-/*
-@media (min-width: 1600px) 
-{
-  .container {
-    width: 100%;
-  }
-}
-*/
+
+
 body {
-  background: url("../img/pyramide-du-louvre-01D.jpg") fixed no-repeat;
+  background: url("../img/pyramide-du-louvre-04A.jpg") fixed no-repeat;
   background-size: 100%;
   position: relative;
 }
 
-body h1, p, form, ul, li, span
-{
+body header, h1, p, form, ul, li, span {
   /*font-family: 'Open Sans', sans-serif;*/
   font-family: 'PT Sans', sans-serif;
 }
 
-h2, h3, h4, h5 
-{
+h1 {
+  font-size: 96px;
+  /*color: #3c3c3c;*/
+  color: white;
+  text-align: center;
+  margin-top: 75px;
+  /*font-weight: bold;*/
+}
+
+h2, h3, h4, h5 {
     font-family: 'PT Sans', sans-serif;
     font-weight: bold;
 }
 
-#header 
-{
+header {
 /*  background: url("../img/pyramide-du-louvre-01D.jpg") fixed no-repeat;
   background-size: 100%;*/
   background-color: rgba(255, 255, 255, 0);
   position: relative;
-  height: 250px;
+  height: 312px;
   text-align: center;
   border: 0;
   width: 100%;
-  float: left;
+  /*float: left;*/
 }
 
-/*.container {
-  width: 90%;
+header p {
+  font-size: 24px;
+  color: white;
+}
+
+.container {
+  width: 80%;
   background-color: rgba(255, 255, 255, 0);
-}*/
+}
 
 .jumbotron {
-  margin-top: 300px;
-  background-color: rgba(235, 240, 244, 0.95);
+  /*margin-top: 100px;*/
+  background-color: rgba(235, 240, 244, 0);
 }
 
-/*.container-fluid {
-  margin-top: 250px;
-  background-color: rgba(235, 240, 244, 0.25);
-}*/
-
-h1
-{
-  font-size: 84px;
-  color: #3c3c3c;
-  text-align: center;
-  margin-top: 100px;
-  /*padding-left: 150px;*/
+.container-fluid {
+  padding-top: 30px;
+  /*margin-top: 50px;*/
+  width: 100%;
+  background-color: rgba(235, 240, 244, 0.92);
+  border-radius: 20px;
 }
 
-footer p
-{
-  font-size: 15px;
+.form-group {
+  margin: 5px 50px 5px 50px;
+}
+
+hr {
+  /*width: 100%;*/
+  margin: 20px 40px 10px 40px;
+  border-top: 1px solid rgba(30, 30, 30, 0.2);
+}
+
+/*** CSS initial ligne 4975 ***/
+.jumbotron p {
+  margin-bottom: 15px;
+  margin-right: 40px;
+  font-size: 12px;
   text-align: right;
+  font-weight: normal;
   color: #7E7E7E;
 }
 
 
-/* Page de RECAP */
+/**** RECAP ****/
+
 h5, ul {
   list-style-type: none;
   padding-left: 0;
@@ -6854,7 +6859,11 @@ h5, ul {
   font-size: 12px;
 }
 
-.recapDiv {
+.recapDiv1 {
+  margin: 20px 50px 10px 50px;
+}
+
+.recapDiv2 {
   display: inline-block;
   margin-right: 50px;
 }
@@ -6864,7 +6873,7 @@ h5, ul {
 }
 
 #prixTotal {
-  font-size: 18px;
+  font-size: 24px;
 }
 
 
@@ -6888,5 +6897,75 @@ h5, ul {
   max-width: 150px;
 }
 
+
+
+/* SMARTPHONES */
+@media all and (min-width: 480px) and (max-width: 768px) {
+  .container {
+    width: 95%;
+  }
+  body {
+    background: url("../img/pyramide-du-louvre-04A.jpg") fixed;
+  }
+  header {
+    height: 200px;
+  }  
+  h1 {
+    font-size: 54px;
+  }
+  header p {
+    font-size: 15px;
+    color: white;
+  }
+  .form-group {
+  margin: 1px 20px 1px 20px;
+  }
+}
+
+/* TABLETTES */
+@media all and (min-width: 768px) and (max-width: 992px) {
+  .container {
+    width: 90%;
+  }
+  body {
+    background: url("../img/pyramide-du-louvre-04A.jpg") fixed;
+  }
+  header {
+    height: 200px;
+  }
+  h1 {
+    font-size: 60px;
+  }
+  header p {
+    font-size: 18px;
+    color: white;
+  }
+  .form-group {
+  margin: 2px 25px 2px 25px;
+  }
+}
+
+/* ÉCRANS MOYENS & GRANDS */
+@media  all and (min-width: 992px) and (max-width: 1280px) {
+  .container {
+    width: 85%;
+  }
+  body {
+    background: url("../img/pyramide-du-louvre-04A.jpg") fixed;
+  }
+  header {
+    height: 240px;
+  }
+  h1 {
+    font-size: 72px;
+  }
+  header p {
+    font-size: 21px;
+    color: white;
+  }
+  .form-group {
+  margin: 3px 30px 3px 30px;
+  }
+}
 
 
