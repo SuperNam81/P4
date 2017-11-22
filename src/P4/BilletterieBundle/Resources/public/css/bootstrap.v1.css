@@ -6772,13 +6772,16 @@ body {
   position: relative;
 }
 
-body header, h1, p, form, ul, li, span {
+body header, p, form, ul, li, span {
   /*font-family: 'Open Sans', sans-serif;*/
   font-family: 'PT Sans', sans-serif;
 }
 
 h1 {
   font-size: 96px;
+  font-family: 'PT Sans', sans-serif;
+  /*font-size: 72px;
+  font-family: 'Cinzel', serif;*/
   /*color: #3c3c3c;*/
   color: white;
   text-align: center;
@@ -6822,8 +6825,8 @@ header p {
   padding-top: 30px;
   /*margin-top: 50px;*/
   width: 100%;
-  background-color: rgba(235, 240, 244, 0.92);
-  border-radius: 20px;
+  background-color: rgba(235, 240, 244, 0.95);
+  border-radius: 15px;
 }
 
 .form-group {

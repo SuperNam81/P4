@@ -11,12 +11,7 @@
 <div>
 	
 	
-	{{ dateVisitorMax }}
 
-
-	{# 
-	{{ booking.dateVisitorMax }}
-	#}
 </div>
 
 {# JAVASCRIPT #}
@@ -83,10 +78,24 @@ $(function() {
                 return [false];
             }           
         }
+
+
+        var regexDateVisitorMax = /(\d{2})\/(\d{2})\/(\d{4})/g;
+		var dateVisitorMaxValue = {{ dateVisitorMax|raw }};
+		var i;
+
+		for (i=0; i < dateVisitorMaxValue.length; i++) {
+			regexDateVisitorMax.lastIndex = 0;
+			var dateValue = regexDateVisitorMax.exec(dateVisitorMaxValue[i]);
+			if (dateValue && Number(dateValue[2]) == date.getMonth()+1 && Number(dateValue[1]) == date.getDate() && Number(dateValue[3]) == date.getFullYear()) {
+				return [false];
+			} 
+		}
+
         for (i = 0; i < joursFeries.length; i++) {
             if (date.getMonth() == joursFeries[i][0] - 1
             && date.getDate() == joursFeries[i][1]) {
-                return [false, joursFeries[i][2]];
+                return [false];
             }
         }
         return [true];
@@ -99,7 +108,7 @@ $(function() {
 
 // Fonction AJOUT VISITEUR supplémentaire
 function addVisitorForm($collectionHolder, $newLinkSpan) {
-	console.log('coucou', arguments.callee.caller.toString());
+	// console.log('coucou', arguments.callee.caller.toString());
     var $compteur = $('#compteurVisiteur').text() + 1;
     // Get the data-prototype explained earlier
     var prototype = $collectionHolder.data('prototype');
@@ -124,6 +133,26 @@ function addVisitorForm($collectionHolder, $newLinkSpan) {
     var $newFormDiv = $('<div></div>').append(newForm);
     $newLinkSpan.before($newFormDiv);
 }
+
+// const regex = /^\[{1}(\"\d{2}\/\d{2}\/\d{4}\")+(,|\])+/g;
+// const str = `["24/11/2017","23/11/2017","13/12/2017"]`;
+// let m;
+
+// while ((m = regex.exec(str)) !== null) {
+//     // This is necessary to avoid infinite loops with zero-width matches
+//     if (m.index === regex.lastIndex) {
+//         regex.lastIndex++;
+//     }
+    
+//     // The result can be accessed through the `m`-variable.
+//     m.forEach((match, groupIndex) => {
+//         console.log(`Found match, group ${groupIndex}: ${match}`);
+//     });
+// }
+
+{# {{ dateVisitorMax }} #}
+
+
 </script>
 
 {% endblock %}

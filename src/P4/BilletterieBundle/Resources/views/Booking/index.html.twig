@@ -9,7 +9,7 @@
 	{{ form_end(form) }}
 </div>
 
-    {{ dateVisitorMax }}
+    {# {{ dateVisitorMax }} #}
 
 {# JAVASCRIPT #}
 {% javascripts filter='jsqueeze' 
@@ -75,6 +75,19 @@ $(function() {
                 return [false];
             }           
         }
+        // Jours où + de 5 visiteurs
+        var regexDateVisitorMax = /(\d{2})\/(\d{2})\/(\d{4})/g;
+        var dateVisitorMaxValue = {{ dateVisitorMax|raw }};
+        var i;
+
+        for (i = 0; i < dateVisitorMaxValue.length; i++) {
+            regexDateVisitorMax.lastIndex = 0;
+            var dateValue = regexDateVisitorMax.exec(dateVisitorMaxValue[i]);
+            if (dateValue && Number(dateValue[2]) == date.getMonth() + 1 && Number(dateValue[1]) == date.getDate() && Number(dateValue[3]) == date.getFullYear()) {
+                return [false];
+            } 
+        }
+        // Jours fériés
         for (i = 0; i < joursFeries.length; i++) {
             if (date.getMonth() == joursFeries[i][0] - 1
             && date.getDate() == joursFeries[i][1]) {
