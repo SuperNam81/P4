@@ -68,14 +68,6 @@ class BookingController extends Controller
 		$booking = new Booking();
 		$form = $this->createForm(BookingType::class, $booking);
 
-		// if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())  
-		// {
-		// 	$em = $this->getDoctrine()->getManager();
-		// 	$em->persist($booking);
-		// 	$em->flush();
-		// 	return $this->redirectToRoute('p4_billetterie_recap', array('id' => $booking->getId()));
-		// }
-
 		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())  
 		{
 			$em = $this->getDoctrine()->getManager();
@@ -110,18 +102,28 @@ class BookingController extends Controller
 		// Token is created using Checkout or Elements!
 		// Get the payment token ID submitted by the form:
 		$token = $_POST['stripeToken'];
-		$customer = \Stripe\Customer::create(array (
-			"email" => "bart@gmail.com",
-			"source" => $token,
-		));
 
-		// Charge the user's card:
-		$charge = \Stripe\Charge::create(array(
-		  "amount" => 1000,
-		  "currency" => "eur",
-		  "description" => "Example charge",
-		  "customer" => $customer,
-		));
+		try {
+			$customer = \Stripe\Customer::create(array (
+				// "email" => "bart@gmail.com",
+				"source" => $token,
+			));
+
+			// Charge the user's card:
+			$charge = \Stripe\Charge::create(array(
+			  "amount" => 1000,
+			  "currency" => "eur",
+			  "description" => "Example charge",
+			  "customer" => $customer,
+			));
+			$this->addFlash("success","Bravo ça marche !");
+			return $this->redirectToRoute("p4_billetterie_recap");
+    	} catch(\Stripe\Error\Card $e) {
+
+			$this->addFlash("error","Snif ça marche pas :(");
+			return $this->redirectToRoute("p4_billetterie_recap");
+			// The card has been declined
+		}
 	}
 
 	 // /**
