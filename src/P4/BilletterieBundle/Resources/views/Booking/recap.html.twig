@@ -54,6 +54,20 @@
 	</div>
 </div>
 
+<form action="{{ path('p4_billetterie_checkout') }}" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_gaLRT0n5g9E2dzNRsxN7sDge"
+    data-amount="{{ booking.prixTotal * 100 }}"
+    data-email="{{ booking.email }}"
+    data-name="Paiement"
+    data-description="Widget"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-locale="auto"
+    data-currency="eur">
+  </script>
+</form>
+
 
 {# JAVASCRIPT #}
 {% javascripts filter='jsqueeze' 

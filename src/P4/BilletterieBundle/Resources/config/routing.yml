@@ -14,3 +14,13 @@ p4_billetterie_test:
     path:     /test
     defaults:
       _controller: P4BilletterieBundle:Booking:test
+
+p4_billetterie_stripe:
+    path:     /stripe
+    defaults:
+      _controller: P4BilletterieBundle:Booking:stripe
+
+p4_billetterie_checkout:
+    path:     /checkout
+    defaults:
+      _controller: P4BilletterieBundle:Booking:checkout      
