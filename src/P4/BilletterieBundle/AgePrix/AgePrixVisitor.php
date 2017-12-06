@@ -4,6 +4,8 @@
 namespace P4\BilletterieBundle\AgePrix;
 
 use Doctrine\ORM\EntityManagerInterface;
+use P4\BilletterieBundle\Entity\Booking;
+use P4\BilletterieBundle\Entity\Visitor;
 
 class AgePrixVisitor
 {
@@ -21,6 +23,22 @@ class AgePrixVisitor
     $this->tarifsenior = $tarifsenior;
     $this->tarifpreferentiel = $tarifpreferentiel;
   }
+
+  public function recupPrixVisitor($booking, $listVisitors)
+  {  
+    // Calcul par visiteur de l'age et donc du prix
+    foreach ($listVisitors as $visitor) {
+      $visitor->age = $this->ageCalcul($visitor->getDateBirth());
+      $visitor->prix = $this->prixCalcul($visitor->age, $visitor->getDiscount(), $booking->ticket);
+    }
+  }
+
+  public function recupPrixTotal($booking, $listVisitors)
+  {  
+    foreach ($listVisitors as $visitor) {
+      $booking->prixTotal += $visitor->prix;
+    }    
+  }  
 
   public function ageCalcul($dateBirth)
   {  
