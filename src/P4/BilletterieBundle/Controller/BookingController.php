@@ -63,6 +63,63 @@ class BookingController extends Controller
 		));
 	}
 
+	public function checkoutAction($id, Request $request)
+	{
+		$em = $this->getDoctrine()->getManager();
+		// Récupération de la réservation
+		$booking = $em->getRepository('P4BilletterieBundle:Booking')->find($id);
+		// Récupération des visiteurs liés à la réservation
+		$listVisitors = $em
+		->getRepository('P4BilletterieBundle:Visitor')
+		->findBy(array('booking' => $booking))
+		;
+		// Calcul par visiteur de l'age et du prix, et pour finir du prix total
+		foreach ($listVisitors as $visitor) {
+			$visitor->age = $this->container->get('p4_billetterie.ageprix_visitor')->ageCalcul($visitor->getDateBirth());
+			$visitor->prix = $this->container->get('p4_billetterie.ageprix_visitor')->prixCalcul($visitor->age, $visitor->getDiscount(), $booking->ticket);
+			$booking->prixTotal += $visitor->prix;
+		}
+
+		// Set your secret key: remember to change this to your live secret key in production
+		// See your keys here: https://dashboard.stripe.com/account/apikeys
+		\Stripe\Stripe::setApiKey("sk_test_MX1BiA6JRM66T4WLZob5fFIa");
+
+		// Token is created using Checkout or Elements!
+		// Get the payment token ID submitted by the form:
+		$token = $_POST['stripeToken'];
+
+		try {
+			$customer = \Stripe\Customer::create(array (
+				"source" => $token,
+			));
+
+			// Charge the user's card:
+			$charge = \Stripe\Charge::create(array(
+			  "amount" => $booking->prixTotal * 100,
+			  "currency" => "eur",
+			  "description" => "Example charge",
+			  "customer" => $customer,
+			));
+			
+			$session = $request->getSession();   
+    		$session->getFlashBag()->add('info', 'Votre paiement a été validé ! Vous allez recevoir un mail de confirmation. Merci et à bientôt.');
+
+			return $this->redirectToRoute('p4_billetterie_payment', array('id' => $booking->getId()));
+
+    	} catch(\Stripe\Error\Card $e) {
+
+			$session->getFlashBag()->add('info', 'Paiement refusé');
+
+			return $this->redirectToRoute('p4_billetterie_payment', array('id' => $booking->getId()));
+			// The card has been declined
+		}
+	}
+
+    public function paymentAction()
+    {
+    	return $this->render('P4BilletterieBundle:Booking:payment.html.twig');
+    } 
+
  	public function testAction(Request $request)
 	{
 		$booking = new Booking();
@@ -86,83 +143,4 @@ class BookingController extends Controller
 			'dateVisitorMax' => $dateVisitorMax,
 		));
 	}
-
-	public function checkoutAction($id, Request $request)
-	{
-		$em = $this->getDoctrine()->getManager();
-		// Récupération de la réservation
-		$booking = $em->getRepository('P4BilletterieBundle:Booking')->find($id);
-		// Set your secret key: remember to change this to your live secret key in production
-		// See your keys here: https://dashboard.stripe.com/account/apikeys
-		\Stripe\Stripe::setApiKey("sk_test_MX1BiA6JRM66T4WLZob5fFIa");
-
-		// Token is created using Checkout or Elements!
-		// Get the payment token ID submitted by the form:
-		$token = $_POST['stripeToken'];
-
-		try {
-			$customer = \Stripe\Customer::create(array (
-				"source" => $token,
-			));
-
-			// Charge the user's card:
-			$charge = \Stripe\Charge::create(array(
-			  "amount" => 400,
-			  "currency" => "eur",
-			  "description" => "Example charge",
-			  "customer" => $customer,
-			));
-			
-
-			$session = $request->getSession();   
-    		$session->getFlashBag()->add('info', 'Votre paiement a été validé ! Vous allez recevoir un mail de confirmation. Merci et à bientôt.');
-
-			return $this->redirectToRoute('p4_billetterie_payment', array('id' => $booking->getId()));
-
-    	} catch(\Stripe\Error\Card $e) {
-
-			$session->getFlashBag()->add('info', 'Paiement refusé');
-
-			return $this->redirectToRoute('p4_billetterie_payment', array('id' => $booking->getId()));
-			// The card has been declined
-		}
-	}
-
-    public function paymentAction()
-    {
-    	return $this->render('P4BilletterieBundle:Booking:payment.html.twig');
-    } 
-
-    
-	 // /**
-  //    * @Route(
-  //    *     "/checkout",
-  //    *     name="p4_billetterie_checkout",
-  //    *     methods="POST"
-  //    * )
-  //    */
-  //   public function checkoutAction(Request $request)
-  //   {
-  //       \Stripe\Stripe::setApiKey("sk_test_MX1BiA6JRM66T4WLZob5fFIa");
-
-  //       // Get the credit card details submitted by the form
-  //       $token = $_POST['stripeToken'];
-
-  //       // Create a charge: this will charge the user's card
-  //       try {
-  //           $charge = \Stripe\Charge::create(array(
-  //               "amount" => 1000, // Amount in cents
-  //               "currency" => "eur",
-  //               "source" => $token,
-  //               "description" => "Paiement Stripe - OpenClassrooms Exemple"
-  //           ));
-  //           $this->addFlash("success","Bravo ça marche !");
-  //           return $this->redirectToRoute("order_prepare");
-  //       } catch(\Stripe\Error\Card $e) {
-
-  //           $this->addFlash("error","Snif ça marche pas :(");
-  //           return $this->redirectToRoute("order_prepare");
-  //           // The card has been declined
-  //       }
-  //   } 
 }

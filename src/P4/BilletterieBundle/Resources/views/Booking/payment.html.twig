@@ -2,74 +2,40 @@
 
 {% block body %}
 
+<div class="recapDiv1">
+    <h2>
+      {# On affiche tous les messages flash dont le nom est « info » #}
+      {% for message in app.session.flashbag.get('info') %}
+        {{ message }}
+      {% endfor %}
+    </h2>
+    <a class="btn btn-primary" href="{{ path('p4_billetterie_homepage') }}">Retour à l'accueil</a>
+</div>
 
+<script type="text/javascript" src="https://js.stripe.com/v3/"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<h2>
-  {# On affiche tous les messages flash dont le nom est « info » #}
-  {% for message in app.session.flashbag.get('info') %}
-    {{ message }}
-  {% endfor %}
-</h2>
-{#     <form action="{{ path('p4_billetterie_checkout') }}" method="post" id="payment-form">
+<script>
 
-        <div class="field">
-          <input type="text" placeholder="Votre code de carte bleu" data-stripe="number">
-        </div>
+    Stripe.setPublishableKey('pk_test_gaLRT0n5g9E2dzNRsxN7sDge');
+    var $form = $('#payment-form');
 
-        <div class="field">
-          <input type="text" placeholder="MM" data-stripe="exp_month">
-        </div>
+    $form.submit(function (e) {
+        e.preventDefault();
+        $form.find('.payment-button').attr('disabled', true);
 
-        <div class="field">
-          <input type="text" placeholder="YY" data-stripe="exp_year">
-        </div>
-
-        <div class="field">
-          <input type="text" placeholder="CVC" data-stripe="cvc">
-        </div>
-
-
-        <button class="payment-button" type="submit">Payer</button>
-    </form> #}
-    
-{# <form action="{{ path('p4_billetterie_checkout') }}" method="POST">
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_test_gaLRT0n5g9E2dzNRsxN7sDge"
-    data-amount="999"
-    data-name="Demo Site"
-    data-description="Widget"
-    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-    data-locale="auto"
-    data-zip-code="true"
-    data-currency="eur">
-  </script>
-</form> #}
-
-    <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-    <script>
-
-        Stripe.setPublishableKey('pk_test_gaLRT0n5g9E2dzNRsxN7sDge');
-        var $form = $('#payment-form');
-
-        $form.submit(function (e) {
-            e.preventDefault();
-            $form.find('.payment-button').attr('disabled', true);
-
-            Stripe.card.createToken($form, function(status, response) {
-                if (response.error) {
-                    $form.find('.message').remove();
-                    $form.prepend('<div><p>' + response.error.message + '</p></div>');
-                } else {
-                    var token = response.id;
-                    $form.append($('<input type="hidden" name="stripeToken">').val(token));
-                    $form.get(0).submit();
-                }
-            });
+        Stripe.card.createToken($form, function(status, response) {
+            if (response.error) {
+                $form.find('.message').remove();
+                $form.prepend('<div><p>' + response.error.message + '</p></div>');
+            } else {
+                var token = response.id;
+                $form.append($('<input type="hidden" name="stripeToken">').val(token));
+                $form.get(0).submit();
+            }
         });
+    });
 
-    </script>
+</script>
 
 {% endblock %}

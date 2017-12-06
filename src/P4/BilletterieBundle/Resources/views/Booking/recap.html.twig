@@ -52,28 +52,22 @@
 		<span>Prix total de votre commande</span><br>
 		<strong id="prixTotal">{{ booking.prixTotal }}€</strong>
 	</div>
+	<br>
+	<form action="{{ path('p4_billetterie_checkout', {'id': booking.id}) }}" method="POST">
+	  <script
+	    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+	    data-key="pk_test_gaLRT0n5g9E2dzNRsxN7sDge"
+	    data-amount="{{ booking.prixTotal * 100 }}"
+	    data-email="{{ booking.email }}"
+	    data-name="Paiement"
+	    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+	    data-locale="auto"
+	    data-currency="eur">
+	  </script>
+	</form>
 </div>
 
-    <p>
-      {# On affiche tous les messages flash dont le nom est « info » #}
-      {% for message in app.session.flashbag.get('info') %}
-        <p>{{ message }}</p>
-      {% endfor %}
-    </p>
 
-<form action="{{ path('p4_billetterie_checkout', {'id': booking.id}) }}" method="POST">
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_test_gaLRT0n5g9E2dzNRsxN7sDge"
-    data-amount="{{ booking.prixTotal * 100 }}"
-    data-email="{{ booking.email }}"
-    data-name="Paiement"
-    data-description="Widget"
-    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-    data-locale="auto"
-    data-currency="eur">
-  </script>
-</form>
 
 
 {# JAVASCRIPT #}
@@ -89,7 +83,8 @@
 
 	/////// DOM OK ///////
 	$(function() {
-
+		var $boutonPayer = $('.stripe-button-el');
+		$boutonPayer.text('Payer par carte bancaire').attr('class', 'btn btn-primary');
 	});
 
 	</script>
