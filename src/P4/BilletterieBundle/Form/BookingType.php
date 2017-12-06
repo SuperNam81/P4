@@ -31,7 +31,7 @@ class BookingType extends AbstractType
             'by_reference' => false,
         ))
         ->add('email', EmailType::class, array(
-            'label' => 'Votre email',
+            'label' => 'Email',
             'attr' => array('placeholder' => 'Entrez votre email'),
         ))
         ->add('ticket', ChoiceType::class, array(

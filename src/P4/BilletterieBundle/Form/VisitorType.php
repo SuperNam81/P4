@@ -28,14 +28,14 @@ class VisitorType extends AbstractType
             'attr' => array('placeholder' => 'Entrez votre prénom'),
         ))
         ->add('dateBirth', BirthdayType::class, array(
-            'label' => 'Votre date de naissance',
+            'label' => 'Date de naissance',
             'widget' => 'single_text',
             'placeholder' => array(
                 'year' => 'Année', 'month' => 'Mois', 'day' => 'Jour',
             ),
         ))
         ->add('country', CountryType::class, array(
-            'label' => 'Votre pays',
+            'label' => 'Pays',
             'placeholder' => 'Sélectionnez votre pays',
         ))
         ->add('discount', CheckboxType::class, array(
