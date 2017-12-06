@@ -51,7 +51,7 @@ class BookingController extends Controller
 		->getRepository('P4BilletterieBundle:Visitor')
 		->findBy(array('booking' => $booking))
 		;
-		// Calcul de l'age, du prix par visiteur et du prix total
+		// Calcul par visiteur de l'age et du prix, et pour finir du prix total
 		foreach ($listVisitors as $visitor) {
 			$visitor->age = $this->container->get('p4_billetterie.ageprix_visitor')->ageCalcul($visitor->getDateBirth());
 			$visitor->prix = $this->container->get('p4_billetterie.ageprix_visitor')->prixCalcul($visitor->age, $visitor->getDiscount(), $booking->ticket);
@@ -87,14 +87,11 @@ class BookingController extends Controller
 		));
 	}
 
-
-    public function stripeAction()
-    {
-    	return $this->render('P4BilletterieBundle:Booking:stripe.html.twig');
-    } 
-
-	public function checkoutAction(Request $request)
+	public function checkoutAction($id, Request $request)
 	{
+		$em = $this->getDoctrine()->getManager();
+		// Récupération de la réservation
+		$booking = $em->getRepository('P4BilletterieBundle:Booking')->find($id);
 		// Set your secret key: remember to change this to your live secret key in production
 		// See your keys here: https://dashboard.stripe.com/account/apikeys
 		\Stripe\Stripe::setApiKey("sk_test_MX1BiA6JRM66T4WLZob5fFIa");
@@ -105,27 +102,38 @@ class BookingController extends Controller
 
 		try {
 			$customer = \Stripe\Customer::create(array (
-				// "email" => "bart@gmail.com",
 				"source" => $token,
 			));
 
 			// Charge the user's card:
 			$charge = \Stripe\Charge::create(array(
-			  "amount" => 1000,
+			  "amount" => 400,
 			  "currency" => "eur",
 			  "description" => "Example charge",
 			  "customer" => $customer,
 			));
-			$this->addFlash("success","Bravo ça marche !");
-			return $this->redirectToRoute("p4_billetterie_recap");
+			
+
+			$session = $request->getSession();   
+    		$session->getFlashBag()->add('info', 'Votre paiement a été validé ! Vous allez recevoir un mail de confirmation. Merci et à bientôt.');
+
+			return $this->redirectToRoute('p4_billetterie_payment', array('id' => $booking->getId()));
+
     	} catch(\Stripe\Error\Card $e) {
 
-			$this->addFlash("error","Snif ça marche pas :(");
-			return $this->redirectToRoute("p4_billetterie_recap");
+			$session->getFlashBag()->add('info', 'Paiement refusé');
+
+			return $this->redirectToRoute('p4_billetterie_payment', array('id' => $booking->getId()));
 			// The card has been declined
 		}
 	}
 
+    public function paymentAction()
+    {
+    	return $this->render('P4BilletterieBundle:Booking:payment.html.twig');
+    } 
+
+    
 	 // /**
   //    * @Route(
   //    *     "/checkout",

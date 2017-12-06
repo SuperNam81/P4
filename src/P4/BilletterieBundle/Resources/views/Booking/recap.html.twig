@@ -54,7 +54,14 @@
 	</div>
 </div>
 
-<form action="{{ path('p4_billetterie_checkout') }}" method="POST">
+    <p>
+      {# On affiche tous les messages flash dont le nom est « info » #}
+      {% for message in app.session.flashbag.get('info') %}
+        <p>{{ message }}</p>
+      {% endfor %}
+    </p>
+
+<form action="{{ path('p4_billetterie_checkout', {'id': booking.id}) }}" method="POST">
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_gaLRT0n5g9E2dzNRsxN7sDge"

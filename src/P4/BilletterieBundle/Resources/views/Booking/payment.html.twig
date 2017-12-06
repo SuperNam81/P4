@@ -3,7 +3,14 @@
 {% block body %}
 
 
-    <form action="{{ path('p4_billetterie_checkout') }}" method="post" id="payment-form">
+
+<h2>
+  {# On affiche tous les messages flash dont le nom est « info » #}
+  {% for message in app.session.flashbag.get('info') %}
+    {{ message }}
+  {% endfor %}
+</h2>
+{#     <form action="{{ path('p4_billetterie_checkout') }}" method="post" id="payment-form">
 
         <div class="field">
           <input type="text" placeholder="Votre code de carte bleu" data-stripe="number">
@@ -23,7 +30,7 @@
 
 
         <button class="payment-button" type="submit">Payer</button>
-    </form>
+    </form> #}
     
 {# <form action="{{ path('p4_billetterie_checkout') }}" method="POST">
   <script
