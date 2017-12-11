@@ -40,7 +40,7 @@ class Booking
      *
      * @ORM\Column(name="email", type="string", length=255)
      */
-    private $email;
+    public $email;
 
     /**
      * @var bool

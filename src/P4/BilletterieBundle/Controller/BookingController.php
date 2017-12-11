@@ -131,10 +131,61 @@ class BookingController extends Controller
 		}
 	}
 
+    public function paymentAction($id)
+    {
+    	$em = $this->getDoctrine()->getManager();
+		// Récupération de la réservation
+		$booking = $em->getRepository('P4BilletterieBundle:Booking')->find($id);
+		$listVisitors = $em
+		->getRepository('P4BilletterieBundle:Visitor')
+		->findBy(array('booking' => $booking))
+		;
+		$prixVisitor = $this->container->get('p4_billetterie.ageprix_visitor')->recupPrixVisitor($booking, $listVisitors);
+		// Appel du service AgePrixVisitor pour avoir le prix total
+		$prixTotal = $this->container->get('p4_billetterie.ageprix_visitor')->recupPrixTotal($booking, $listVisitors);
+
+		
+		// $mailer = $booking->email;
+	    $message = (new \Swift_Message('Le Louvre – Confirmation de votre réservation'))
+	        ->setFrom('spidernam75@gmail.com')
+	        ->setTo('nam7519@gmail.com')
+	        ->setBody(
+	            $this->renderView(
+	                'P4BilletterieBundle:Booking:recapMail.html.twig', array(
+	            			'booking' => $booking,
+	            			'listVisitors' => $listVisitors,
+	            		)
+	            ),
+	            'text/html'
+	        );
+
+	    // $mailer->send($message);
+
+	    // or, you can also fetch the mailer service this way
+	    $this->get('mailer')->send($message);
+
+	    return $this->render('P4BilletterieBundle:Booking:payment.html.twig');
+    } 
+
+	// PAYMENT ACTION II
+  //   public function paymentAction($id, Request $request)
+  //   {
+  //   	$em = $this->getDoctrine()->getManager();
+		// // Récupération de la réservation
+		// $booking = $em->getRepository('P4BilletterieBundle:Booking')->find($id);
+
+		// $mail = $booking->getEmail();
+		// $envoiMail = $this->container->get('p4_billetterie.email.recap_mailer')->sendRecap($mail);
+
+  //   	return $this->render('P4BilletterieBundle:Booking:payment.html.twig');
+  //   } 
+
+	/* PAYMENT ACTION I
     public function paymentAction()
     {
     	return $this->render('P4BilletterieBundle:Booking:payment.html.twig');
     } 
+	*/
 
  	public function testAction(Request $request)
 	{

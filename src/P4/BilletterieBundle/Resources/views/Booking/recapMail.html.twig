@@ -1,0 +1,20 @@
+{# src/P4/BilletterieBundle/Resources/views/Booking/recapMail.html.twig #}
+
+<h2>Bonjour ! Voici la confirmation de votre réservation.</h2>
+
+<h3>Numéro de réservation : {{ booking.id }}</h3>
+
+<div>
+	Nombre de visiteur : {{ listVisitors|length }}
+	<br>
+	<span>Type de ticket :</span>
+	{% if booking.ticket == 0 %} Demi-journée
+	{% elseif booking.ticket == 1 %} Journée
+	{% endif %}<br>
+	<span>Date choisie : </span>{{ booking.bookingDate }}<br><br>
+	<span>Prix total de votre commande :</span><br>
+	<h3>{{ booking.prixTotal }}€</h3>
+</div>
+
+Merci et à bientôt.
+<p>Musée du Louvre © {{ 'now'|date('Y') }}</p>
