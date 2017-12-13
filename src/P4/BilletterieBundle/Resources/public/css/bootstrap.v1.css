@@ -6826,7 +6826,7 @@ header p {
   /*margin-top: 50px;*/
   width: 100%;
   background-color: rgba(235, 240, 244, 0.95);
-  border-radius: 15px;
+  border-radius: 5px;
 }
 
 .form-group {

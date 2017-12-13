@@ -26,7 +26,7 @@ class RecapMailer
   {  
     // Envoi du mail
     $message = (new \Swift_Message('Le Louvre – Confirmation de votre réservation'))
-          ->setFrom('spidernam75@gmail.com')
+          ->setFrom('louvre.ocp4@gmail.com')
           ->setTo($booking->email)
           ->setBody(
               $this->templating->render(

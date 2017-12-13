@@ -66,7 +66,7 @@ class Visitor
 
     public $age;
     public $prix;
-
+    
     /**
      * Get id
      *

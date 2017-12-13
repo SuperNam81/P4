@@ -48,8 +48,7 @@ class Booking
      * @ORM\Column(name="ticket", type="boolean")
      */
     public $ticket;
-    
-    public $prixTotal;    
+        
 
     public function __construct()
     {

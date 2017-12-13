@@ -24,20 +24,22 @@ class AgePrixVisitor
     $this->tarifpreferentiel = $tarifpreferentiel;
   }
 
-  public function recupPrixVisitor($booking, $listVisitors)
+  public function recupPrixVisitor($ticket, $listVisitors)
   {  
     // Calcul par visiteur de l'age et donc du prix
     foreach ($listVisitors as $visitor) {
       $visitor->age = $this->ageCalcul($visitor->getDateBirth());
-      $visitor->prix = $this->prixCalcul($visitor->age, $visitor->getDiscount(), $booking->ticket);
+      $visitor->prix = $this->prixCalcul($visitor->age, $visitor->getDiscount(), $ticket);
     }
   }
 
-  public function recupPrixTotal($booking, $listVisitors)
-  {  
+  public function recupPrixTotal($prixVisitor, $listVisitors)
+  { 
+    $prixTotal = '';
     foreach ($listVisitors as $visitor) {
-      $booking->prixTotal += $visitor->prix;
-    }    
+      $prixTotal += $visitor->prix;
+    }
+    return $prixTotal;    
   }  
 
   public function ageCalcul($dateBirth)
