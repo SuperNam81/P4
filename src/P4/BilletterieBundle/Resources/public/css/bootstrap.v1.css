@@ -6764,8 +6764,6 @@ button.close {
 /**** MON CSS ****/
 
 
-
-
 body {
   background: url("../img/pyramide-du-louvre-04A.jpg") fixed no-repeat;
   background-size: 100%;
@@ -6811,6 +6809,10 @@ header p {
   color: white;
 }
 
+.container {
+  width: 80%;
+  background-color: rgba(255, 255, 255, 0);
+}
 /*** CSS initial ligne 4998 ***/
 .container .jumbotron,
 .container-fluid .jumbotron {
@@ -6821,9 +6823,14 @@ header p {
 /**** INFOS PRATIQUES ****/
 
 #infosPratiques {
-  border-radius: 15px;
-/*  background-color: rgba(235, 240, 244, 0.9); */
-  /*padding: 48px 10px 48px 10px;*/
+  /*background-color: rgba(235, 240, 244, 0.9);*/
+  padding: 48px 6px 0px 0px;
+}
+#containerInfosPratiques {
+  padding: 12px 18px 12px 10px;
+  width: 100%;
+  background-color: rgba(235, 240, 244, 0.95);
+  border-radius: 5px;
 }
 #infosPratiques h5 {
   color: #5E5E5E;
@@ -6842,15 +6849,14 @@ header p {
 
 /**** FORMULAIRE ****/
 
+#formTitre {
+  margin: 3px 0px 10px 30px;
+}
+
 #compteurVisiteur {
   padding: 0;
   text-align: right;
   color: #7E7E7E;
-}
-
-.container {
-  width: 80%;
-  background-color: rgba(255, 255, 255, 0);
 }
 
 .jumbotron {
@@ -6858,7 +6864,7 @@ header p {
   background-color: rgba(235, 240, 244, 0);
 }
 
-.container-fluid {
+#containerForm {
   padding-top: 12px;
   /*margin-left: 0px;*/
   width: 100%;
