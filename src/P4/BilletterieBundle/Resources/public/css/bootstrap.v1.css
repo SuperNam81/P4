@@ -6811,9 +6811,41 @@ header p {
   color: white;
 }
 
+/*** CSS initial ligne 4998 ***/
+.container .jumbotron,
+.container-fluid .jumbotron {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+/**** INFOS PRATIQUES ****/
+
+#infosPratiques {
+  border-radius: 15px;
+/*  background-color: rgba(235, 240, 244, 0.9); */
+  /*padding: 48px 10px 48px 10px;*/
+}
+#infosPratiques h5 {
+  color: #5E5E5E;
+}
+#infosPratiques p {
+  text-align: left;
+  font-size: 13px;
+  color: #5E5E5E;
+}
+#tarifs {
+  font-size: 13px;
+  color: #5E5E5E;
+  padding-left: 10px;
+}
+
+
+/**** FORMULAIRE ****/
+
 #compteurVisiteur {
   padding: 0;
   text-align: right;
+  color: #7E7E7E;
 }
 
 .container {
@@ -6827,7 +6859,7 @@ header p {
 }
 
 .container-fluid {
-  padding-top: 30px;
+  padding-top: 12px;
   /*margin-left: 0px;*/
   width: 100%;
   background-color: rgba(235, 240, 244, 0.95);
