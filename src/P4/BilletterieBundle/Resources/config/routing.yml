@@ -16,11 +16,11 @@ p4_billetterie_test:
       _controller: P4BilletterieBundle:Booking:test
 
 p4_billetterie_checkout:
-    path:     /checkout/{id}
+    path:     /checkout
     defaults:
       _controller: P4BilletterieBundle:Booking:checkout      
 
 p4_billetterie_payment:
-    path:     /payment/{id}
+    path:     /payment
     defaults:
       _controller: P4BilletterieBundle:Booking:payment      

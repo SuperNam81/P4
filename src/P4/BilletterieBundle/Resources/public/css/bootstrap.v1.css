@@ -6811,6 +6811,11 @@ header p {
   color: white;
 }
 
+#compteurVisiteur {
+  padding: 0;
+  text-align: right;
+}
+
 .container {
   width: 80%;
   background-color: rgba(255, 255, 255, 0);
@@ -6823,7 +6828,7 @@ header p {
 
 .container-fluid {
   padding-top: 30px;
-  /*margin-top: 50px;*/
+  /*margin-left: 0px;*/
   width: 100%;
   background-color: rgba(235, 240, 244, 0.95);
   border-radius: 5px;

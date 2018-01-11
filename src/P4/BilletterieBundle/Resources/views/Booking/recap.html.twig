@@ -7,8 +7,7 @@
 
 {# {{ form(form) }} #}
 <div class="recapDiv1">
-	<h2>Voici le récapitulatif de votre réservation</h2>
-
+	<h2>Voici le récapitulatif de vos informations</h2>
 	<ul>
 		{% set i = 0 %}
 		{% for visitor in listVisitors %}
@@ -43,81 +42,37 @@
 		{% endfor %}
 	</ul>
 
-
-	<span class="recap">Mail de contact : </span>
-	{{ email }}
-	<br>
-
-	<span class="recap">Type de ticket :</span>
-	{% if ticket == 0 %} Demi-journée
-	{% elseif ticket == 1 %} Journée
-	{% endif %}<br>
-
-	<span class="recap">Date choisie : </span>{{ bookingDate }}
-	<br><br>
-
-
-	<span>Prix total de votre commande</span><br>
-	<strong id="prixTotal">{{ prixTotal }}€</strong>
-
-
-{# 	<h3>Réservation n° {{ booking.id }} </h3>
-	<ul>
-		{% set i = 0 %}
-		{% for visitor in listVisitors %}
-			<div class="recapDiv2">
-				{% set i = i + 1 %}
-				<li><strong class="visiteur">Visiteur {{ i }}</strong></li>
-				<li>
-					<span class="recap">Nom : </span>{{ visitor.name }}
-				</li>
-				<li>
-					<span class="recap">Prénom : </span>{{ visitor.lastname }}
-				</li>
-				<li>
-					<span class="recap">Date de naissance : </span>{{ visitor.dateBirth|date('d/m/Y') }}
-				</li>
-				<li>
-					<span class="recap">Age : </span>{{ visitor.age }} ans
-				</li>			
-				<li>
-					<span class="recap">Pays : </span>{{ visitor.country }}
-				</li>
-				<li>
-					<span class="recap">Tarif préférentiel : </span>
-					{% if visitor.discount == 0 %} Non
-					{% elseif visitor.discount == 1 %} Oui
-					{% endif %}
-				</li>
-				<li>
-					<span class="recap">Prix : </span>{{ visitor.prix }}€
-				</li><br>
-			</div>
-		{% endfor %}
-	</ul> #}
 	<div>
-{# 		<span class="recap">Type de ticket :</span>
-		{% if booking.ticket == 0 %} Demi-journée
-		{% elseif booking.ticket == 1 %} Journée
+		<span class="recap">Mail de contact : </span>
+		{{ email }}
+		<br>
+
+		<span class="recap">Type de ticket :</span>
+		{% if ticket == 0 %} Demi-journée
+		{% elseif ticket == 1 %} Journée
 		{% endif %}<br>
-		<span class="recap">Date choisie : </span>{{ booking.bookingDate }}<br>
-		<span class="recap">Mail de contact : </span>{{ booking.email }}<br><br>
+
+		<span class="recap">Date choisie : </span>{{ bookingDate }}
+		<br><br>
+
+
 		<span>Prix total de votre commande</span><br>
-		<strong id="prixTotal">{{ booking.prixTotal }}€</strong> #}
+		<strong id="prixTotal">{{ prixTotal }}€</strong>
 	</div>
 	<br>
-{# 	<form action="{{ path('p4_billetterie_checkout', {'id': booking.id}) }}" method="POST">
+
+	<form action="{{ path('p4_billetterie_checkout') }}" method="POST">
 	  <script
 	    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 	    data-key="pk_test_gaLRT0n5g9E2dzNRsxN7sDge"
-	    data-amount="{{ booking.prixTotal * 100 }}"
-	    data-email="{{ booking.email }}"
+	    data-amount="{{ prixTotal * 100 }}"
+	    data-email="{{ email }}"
 	    data-name="Paiement"
 	    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
 	    data-locale="auto"
 	    data-currency="eur">
 	  </script>
-	</form> #}
+	</form>	
 </div>
 
 
@@ -137,7 +92,7 @@
 	/////// DOM OK ///////
 	$(function() {
 		var $boutonPayer = $('.stripe-button-el');
-		$boutonPayer.text('Payer par carte bancaire').attr('class', 'btn btn-primary');
+		$boutonPayer.text('Valider et payer par carte bancaire').attr('class', 'btn btn-primary');
 	});
 
 	</script>

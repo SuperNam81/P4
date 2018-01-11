@@ -1,19 +1,51 @@
 {# src/P4/BilletterieBundle/Resources/views/Booking/recapMail.html.twig #}
 
-<h2>Bonjour ! Voici la confirmation de votre réservation.</h2>
+<h2>Bonjour ! Voici le résumé de votre commande ainsi que les billets.</h2>
 
-<h3>Numéro de réservation : {{ booking.id }}</h3>
+<h3>Numéro de réservation : {{ id }}</h3>
 
 <div>
 	Nombre de visiteur : {{ listVisitors|length }}
 	<br>
 	<span>Type de ticket :</span>
-	{% if booking.ticket == 0 %} Demi-journée
-	{% elseif booking.ticket == 1 %} Journée
+	{% if ticket == 0 %} Demi-journée
+	{% elseif ticket == 1 %} Journée
 	{% endif %}<br>
-	<span>Date choisie : </span>{{ booking.bookingDate }}<br><br>
+	<span>Date choisie : </span>{{ bookingDate }}<br><br>
 	<span>Prix total de votre commande :</span><br>
-	<h3>{{ booking.prixTotal }}€</h3>
+	<h3>{{ prixTotal }}€</h3>
+</div>
+
+<h3>Les visiteurs :</h3>
+<div>
+	{% set i = 0 %}
+	{% for visitor in listVisitors %}
+		<div>
+			{% set i = i + 1 %}
+			<p><strong>Visiteur {{ i }}</strong></p>
+			<p>
+				<span>Nom : </span>{{ visitor.name }}
+			</p>
+			<p>
+				<span>Prénom : </span>{{ visitor.lastname }}
+			</p>
+			<p>
+				<span>Date de naissance : </span>{{ visitor.dateBirth|date('d/m/Y') }}
+			</p>
+			<p>
+				<span>Age : </span>{{ visitor.age }} ans
+			</p>			
+			<p>
+				<span>Pays : </span>{{ visitor.country }}
+			</p>
+			<p>
+				<span>Tarif préférentiel : </span>
+				{% if visitor.discount == 0 %} Non
+				{% elseif visitor.discount == 1 %} Oui
+				{% endif %}
+			</p>
+		</div>
+	{% endfor %}
 </div>
 
 Merci et à bientôt.

@@ -122,11 +122,11 @@ function addVisitorForm($collectionHolder, $newLinkSpan) {
     // increase the index with one for the next item
     $collectionHolder.data('index', index + 1);
        
-    //var $compteurVisiteur = $('<div>Visiteur <span class="compteurVisiteur">1</span></div>');
-    //$('#compteurVisiteur').text() +1;
+    var $compteurVisiteur = $('<h4 id="compteurVisiteur">Visiteur ' + (index + 1) + '</h4>');
 
     // Display the form in the page in a div, before the "Add a visitor" link span
     var $newFormDiv = $('<div></div>').append(newForm);
+    $newFormDiv.prepend($compteurVisiteur);
     $newLinkSpan.before($newFormDiv);
 }
 </script>

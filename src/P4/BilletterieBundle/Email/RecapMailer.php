@@ -22,24 +22,27 @@ class RecapMailer
     $this->templating = $templating;
   }
 
-  public function sendRecap($booking, $listVisitors)
+  public function sendRecap($id, $bookingDate, $listVisitors, $email, $ticket, $prixTotal)
   {  
+
     // Envoi du mail
     $message = (new \Swift_Message('Le Louvre – Confirmation de votre réservation'))
           ->setFrom('louvre.ocp4@gmail.com')
-          ->setTo($booking->email)
+          ->setTo($email)
           ->setBody(
               $this->templating->render(
                   'P4BilletterieBundle:Booking:recapMail.html.twig', array(
-                    'booking' => $booking,
+                    'id' => $id,
+                    'bookingDate' => $bookingDate,
                     'listVisitors' => $listVisitors,
+                    'email' => $email,
+                    'ticket' => $ticket,
+                    'prixTotal' => $prixTotal,
                   )
               ),
               'text/html'
           );
-
       // $mailer->send($message);
-
       // or, you can also fetch the mailer service this way
       $this->mailer->send($message);
   }

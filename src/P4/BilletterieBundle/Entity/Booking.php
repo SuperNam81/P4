@@ -40,14 +40,14 @@ class Booking
      *
      * @ORM\Column(name="email", type="string", length=255)
      */
-    public $email;
+    private $email;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="ticket", type="boolean")
      */
-    public $ticket;
+    private $ticket;
         
 
     public function __construct()
