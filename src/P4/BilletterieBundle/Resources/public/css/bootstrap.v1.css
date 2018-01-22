@@ -6824,13 +6824,14 @@ header p {
 
 #infosPratiques {
   /*background-color: rgba(235, 240, 244, 0.9);*/
-  padding: 48px 6px 0px 0px;
+  padding: 0px 6px 0px 0px;
 }
 #containerInfosPratiques {
   padding: 12px 18px 12px 10px;
   width: 100%;
   background-color: rgba(235, 240, 244, 0.95);
-  border-radius: 5px;
+  /*background-color: rgba(250, 235, 255, 0.85);*/
+  border-radius: 2px;
 }
 #infosPratiques h5 {
   color: #5E5E5E;
@@ -6849,8 +6850,12 @@ header p {
 
 /**** FORMULAIRE ****/
 
+#formJumbo {
+  padding: 0px 100px 0px 20px;
+}
+
 #formTitre {
-  margin: 3px 0px 10px 30px;
+  margin: 10px 0px 10px 30px;
 }
 
 #compteurVisiteur {

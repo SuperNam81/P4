@@ -47,10 +47,21 @@
 		{{ email }}
 		<br>
 
-		<span class="recap">Type de ticket :</span>
+{# 		<span class="recap">Type de ticket :</span>
 		{% if ticket == 0 %} Demi-journée
 		{% elseif ticket == 1 %} Journée
-		{% endif %}<br>
+		{% endif %} #}
+
+		<span class="recap">Type de ticket :</span>
+		{% if "now"|date('d/m/Y') == bookingDate and "now"|date('H:i') > "14:00"|date('H:i') %}
+			Demi-journée
+		{% else %}
+			{% if ticket == 0 %} Demi-journée
+			{% elseif ticket == 1 %} Journée
+			{% endif %}
+		{% endif %}
+
+		<br>
 
 		<span class="recap">Date choisie : </span>{{ bookingDate }}
 		<br><br>

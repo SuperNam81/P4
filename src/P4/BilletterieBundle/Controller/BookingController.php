@@ -55,7 +55,7 @@ class BookingController extends Controller
 		$email = $session->get('email');
 		$ticket = $session->get('ticket');
 		// Appel du service AgePrixVisitor pour avoir le prix par visiteur		
-		$prixVisitor = $this->container->get('p4_billetterie.ageprix_visitor')->recupPrixVisitor($ticket, $listVisitors);
+		$prixVisitor = $this->container->get('p4_billetterie.ageprix_visitor')->recupPrixVisitor($bookingDate, $ticket, $listVisitors);
 		// Appel du service AgePrixVisitor pour avoir le prix total
 		$prixTotal = $this->container->get('p4_billetterie.ageprix_visitor')->recupPrixTotal($prixVisitor, $listVisitors);
 						
