@@ -5,6 +5,7 @@ namespace P4\BilletterieBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
+
 /**
  * Booking
  *
@@ -26,7 +27,7 @@ class Booking
     /**
      * @var \Date
      *
-     * @ORM\Column(name="bookingDate", type="string", length=255)
+     * @ORM\Column(name="bookingDate", type="string", length=255)     
      */
     private $bookingDate;
 
