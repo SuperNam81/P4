@@ -135,6 +135,7 @@ class BookingController extends Controller
     	return $this->render('P4BilletterieBundle:Booking:payment.html.twig');
     } 
 	
+	/*
  	public function testAction(Request $request)
 	{
 		$booking = new Booking();
@@ -155,4 +156,5 @@ class BookingController extends Controller
 			'dateVisitorMax' => $dateVisitorMax,
 		));
 	}
+	*/
 }

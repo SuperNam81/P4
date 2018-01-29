@@ -35,15 +35,6 @@ class AgePrixVisitor
     }
   }
 
-  public function recupPrixTotal($prixVisitor, $listVisitors)
-  { 
-    $prixTotal = '';
-    foreach ($listVisitors as $visitor) {
-      $prixTotal += $visitor->prix;
-    }
-    return $prixTotal;    
-  }  
-
   public function ageCalcul($dateBirth)
   {  
     $date = new \DateTime();
@@ -56,23 +47,13 @@ class AgePrixVisitor
     $prix = '';
 
     $today = new \DateTime();
-    // $today = date_format($today, 'd/m/Y');
 
     $bookingTime = new \DateTime('now');
     $bookingTime = date_format($bookingTime, 'H:i');
 
     $quatorzeHeure = date('14:00');
-
-    // $format = 'dd/mm/yyyy';
-    // $bookingDateNoString = \DateTime::createFromFormat($format, $bookingDate);
-    // $bookingDateNoString = \DateTime::createFromFormat('dd/mm/yyyy', $bookingDate);
-    // $bookingDateNoString = \DateTime::createFromFormat($bookingDate, 'dd/mm/yy');
-
+    // Date de résa en format date
     $bookingDateNoString = date_create_from_format('d/m/Y', $bookingDate);
-
-    // $bookingDateNoString = date_create_from_format($bookingDate, 'd-m-Y');
-
-    // $bookingDateNoString = strtotime($bookingDate);
 
     if ($age >= 0 && $age < 4) {
       $prix = $this->tarifgratuit;
@@ -86,8 +67,9 @@ class AgePrixVisitor
     if ($discount == 1) {
       return $prix = $this->tarifpreferentiel;
     }
-
+    // Si la date de résa est aujourd'hui même
     if ($today == $bookingDateNoString) {
+      // Si il est 14h00 passé
       if ($bookingTime > $quatorzeHeure) {
         $ticket == 0;
         return $prix/2;
@@ -98,29 +80,15 @@ class AgePrixVisitor
     }
     
     return $prix;
-  } 
-
-  /*
-  public function prixCalcul($age, $discount, $ticket)
-  { 
-    $prix = '';
-
-    if ($age >= 0 && $age < 4) {
-      $prix = $this->tarifgratuit;
-    } elseif ($age >= 4 && $age < 12) {
-      $prix = $this->tarifenfant;
-    } elseif ($age >= 12 && $age < 60) {
-      $prix = $this->tarifnormal;
-    } elseif ($age >= 60) {
-      $prix = $this->tarifsenior;
-    }
-    if ($discount == 1) {
-      return $prix = $this->tarifpreferentiel;
-    }
-    if ($ticket == 0) {
-      return $prix/2;
-    }
-    return $prix;
   }
-  */ 
+  
+  // Prix total
+  public function recupPrixTotal($prixVisitor, $listVisitors)
+  { 
+    $prixTotal = '';
+    foreach ($listVisitors as $visitor) {
+      $prixTotal += $visitor->prix;
+    }
+    return $prixTotal;    
+  }     
 }
