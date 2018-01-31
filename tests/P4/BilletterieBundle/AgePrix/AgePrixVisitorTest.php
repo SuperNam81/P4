@@ -26,7 +26,6 @@ class AgePrixVisitorTest extends TestCase
         ];
     }
 
-
     public function testPrixCalcul()
     {
     	$prix = new AgePrixVisitor(0, 8, 16, 12, 10);

@@ -7,24 +7,33 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class BookingControllerTest extends WebTestCase
 {
+	protected $router;
+
     public function testFormPost()
     {
-    	// $client = static::createClient();
 
-    	// $crawler = $client->request('GET', '/');
-    	// $this->assertSame(200, $client->getResponse()->getStatusCode());
+    	$client = static::createClient();
 
-    	// echo $client->getResponse()->getContent();
+    	$router = $client->getContainer()->get('router');
 
-  //   	$buttonCrawlerNode = $crawler->selectButton('submit');
+    	$crawler = $client->request('GET', $router->generate('p4_billetterie_homepage'));
 
-		// $form = $buttonCrawlerNode->form(array(
-		//     'name'   => 'Simpson',
-		//     'email'  => 'nam7519@gmail.com',
-		// ));
+    	$this->assertSame(200, $client->getResponse()->getStatusCode());
 
-		// $client->submit($form);
 
+    	$buttonCrawlerNode = $crawler->selectButton('Valider');
+
+    	$form = $buttonCrawlerNode->form();
+    	// Get the raw values.
+		$values = $form->getPhpValues();
+
+		$values['p4_billetteriebundle_booking']['visitors'][0]['name'] = 'Simpson';
+		$values['p4_billetteriebundle_booking']['email'] = 'nam7519@gmail.com';
+
+		$crawler = $client->request($form->getMethod(), $form->getUri(), $values,
+    	$form->getPhpFiles());
+
+		$this->assertSame(302, $client->getResponse()->getStatusCode());
 
 
 		// // set some values
