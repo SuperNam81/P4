@@ -4,6 +4,8 @@ namespace P4\BilletterieBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -27,12 +29,15 @@ class Booking
     /**
      * @var \Date
      *
-     * @ORM\Column(name="bookingDate", type="string", length=255)     
+     * @ORM\Column(name="bookingDate", type="string", length=255)
+     * @Assert\Type("string")     
      */
     private $bookingDate;
 
     /**
      * @ORM\OneToMany(targetEntity="P4\BilletterieBundle\Entity\Visitor", mappedBy="booking", cascade={"persist"})
+     * @Assert\NotNull()
+     * @Assert\Valid(traverse=true)
      */
     private $visitors;
     
@@ -40,6 +45,8 @@ class Booking
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\Email(message = "Email non valide")
+     * @Assert\NotBlank()
      */
     private $email;
 
@@ -47,6 +54,7 @@ class Booking
      * @var bool
      *
      * @ORM\Column(name="ticket", type="boolean")
+     * @Assert\Type("bool")
      */
     private $ticket;
         

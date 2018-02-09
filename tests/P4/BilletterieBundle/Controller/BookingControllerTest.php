@@ -11,7 +11,6 @@ class BookingControllerTest extends WebTestCase
 
     public function testFormPost()
     {
-
     	$client = static::createClient();
 
     	$router = $client->getContainer()->get('router');
@@ -20,31 +19,23 @@ class BookingControllerTest extends WebTestCase
 
     	$this->assertSame(200, $client->getResponse()->getStatusCode());
 
+    	$boutonFormValider = $crawler->selectButton('Valider');
 
-    	$buttonCrawlerNode = $crawler->selectButton('Valider');
-
-    	$form = $buttonCrawlerNode->form();
+    	$form = $boutonFormValider->form();
     	// Get the raw values.
 		$values = $form->getPhpValues();
 
-		$values['p4_billetteriebundle_booking']['visitors'][0]['name'] = 'Simpson';
+		$values['p4_billetteriebundle_booking']['visitors'][0]['name'] = 'aa';
+		$values['p4_billetteriebundle_booking']['visitors'][0]['lastname'] = 'aa';
+		$values['p4_billetteriebundle_booking']['visitors'][0]['dateBirth'] = '1981/03/21';
+		$values['p4_billetteriebundle_booking']['visitors'][0]['country'] = 'France';		
+		$values['p4_billetteriebundle_booking']['visitors'][0]['discount'] = '0';
 		$values['p4_billetteriebundle_booking']['email'] = 'nam7519@gmail.com';
+		$values['p4_billetteriebundle_booking']['ticket'] = '1';
+		$values['p4_billetteriebundle_booking']['bookingDate'] = '2018/02/27';		
 
-		$crawler = $client->request($form->getMethod(), $form->getUri(), $values,
-    	$form->getPhpFiles());
+		$crawler = $client->request($form->getMethod(), $form->getUri(), $values, $form->getPhpFiles());
 
 		$this->assertSame(302, $client->getResponse()->getStatusCode());
-
-
-		// // set some values
-		// $form['name'] = 'Simpson';
-		// $form['lastname'] = 'Bart';
-		// $form['dateBirth'] = '21/04/1985';
-		// $form['country'] = 'France';
-		// $form['email'] = 'nam7519@gmail.com';
-		// $form['ticket'] = false;
-		// $form['bookingDate'] = '07/02/2018';
-		// $form['email'] = 'nam7519@gmail.com';
-
     }
 }

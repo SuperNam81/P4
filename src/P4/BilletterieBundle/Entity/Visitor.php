@@ -3,6 +3,7 @@
 namespace P4\BilletterieBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -27,6 +28,13 @@ class Visitor
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Votre nom doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Votre nom doit faire au maximum {{ limit }} caractères"
+     * )
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -34,6 +42,13 @@ class Visitor
      * @var string
      *
      * @ORM\Column(name="lastname", type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Votre prénom doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Votre prénom doit faire au maximum {{ limit }} caractères"
+     * )
+     * @Assert\NotBlank()
      */
     private $lastname;
 
@@ -41,6 +56,8 @@ class Visitor
      * @var \DateTime
      *
      * @ORM\Column(name="dateBirth", type="date")
+     * @Assert\NotNull(message = "Veuillez indiquer votre date de naissance")
+     * @Assert\DateTime()
      */
     private $dateBirth;
 
@@ -48,6 +65,7 @@ class Visitor
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=255)
+     * @Assert\NotNull(message = "Veuillez indiquer votre pays")
      */
     private $country;
 
@@ -55,6 +73,7 @@ class Visitor
      * @var bool
      *
      * @ORM\Column(name="discount", type="boolean", nullable=true)
+     * @Assert\Type("bool")
      */
     private $discount;
 
