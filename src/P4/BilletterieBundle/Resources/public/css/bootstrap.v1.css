@@ -6824,10 +6824,11 @@ header p {
 
 #infosPratiques {
   /*background-color: rgba(235, 240, 244, 0.9);*/
-  padding: 0px 6px 0px 0px;
+  padding: 0px 4px 0px 0px;
+  /*margin-bottom: 20px;*/
 }
 #containerInfosPratiques {
-  padding: 12px 18px 12px 10px;
+  padding-top: 5px;
   width: 100%;
   background-color: rgba(235, 240, 244, 0.95);
   /*background-color: rgba(250, 235, 255, 0.85);*/
@@ -6949,11 +6950,44 @@ h5, ul {
 }
 
 
+/* SMARTPHONES 2 */
+@media all and (max-width: 480px) {
+  .container {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 0px;
+  }
+  body {
+    background: url("../img/pyramide-du-louvre-04A.jpg") fixed;
+  }
+  header {
+    height: 220px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 10px;
+  }  
+  h1 {
+    font-size: 48px;
+  }
+  header p {
+    font-size: 18px;
+    color: white;
+  }
+  .form-group {
+  margin: 1px 20px 1px 20px;
+  }
+  #formJumbo {
+    padding: 0px 5px 0px 0px;
+  }
+
+}
 
 /* SMARTPHONES */
 @media all and (min-width: 480px) and (max-width: 768px) {
   .container {
-    width: 95%;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 0px;
   }
   body {
     background: url("../img/pyramide-du-louvre-04A.jpg") fixed;
@@ -6971,12 +7005,18 @@ h5, ul {
   .form-group {
   margin: 1px 20px 1px 20px;
   }
+  #formJumbo {
+    padding: 0px 5px 0px 0px;
+  }
+
 }
 
 /* TABLETTES */
 @media all and (min-width: 768px) and (max-width: 992px) {
   .container {
     width: 90%;
+    padding-left: 20px;
+    padding-right: 0px;    
   }
   body {
     background: url("../img/pyramide-du-louvre-04A.jpg") fixed;
@@ -6993,6 +7033,9 @@ h5, ul {
   }
   .form-group {
   margin: 2px 25px 2px 25px;
+  }
+  #formJumbo {
+    padding: 0px 5px 0px 0px;
   }
 }
 

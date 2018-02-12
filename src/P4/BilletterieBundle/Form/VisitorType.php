@@ -39,7 +39,7 @@ class VisitorType extends AbstractType
             'placeholder' => 'Sélectionnez votre pays',
         ))
         ->add('discount', CheckboxType::class, array(
-            'label' => 'Tarif préférentiel',     
+            'label' => 'Tarif réduit',     
             'required' => false));
     }
     
