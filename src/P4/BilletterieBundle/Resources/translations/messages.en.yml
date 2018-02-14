@@ -1,9 +1,33 @@
 # src/P4/BilletterieBundle/Resources/translations/messages.en.yml
 
-Bonjour: Hello
-IP: Practical information
 site.devise: Buy your ticket in a few clicks.
+
+ip: 
+  titre: Practical information
+  adresse: Adress
+  telephone: Phone
+  horaires: 
+    titre: Opening hours
+    texte: Open every day from 9h to 18h except Tuesday and Sunday. Nocturnes until 9:45 pm on Wednesdays and Fridays.
+  tarifs:
+    titre: Admission
+    normal.1: 16 € - "normal" fare
+    normal.2: from 12 years old
+    seniors.1: 12 € - "senior" fare
+    seniors.2: from 60 years old
+    enfants.1: 8 € - "children" fare
+    enfants.2: from 4 to 12 years old
+    reduit.1: 10 € - « reduced fare »
+    reduit.2: for students, museum employees, those of the Ministry of Culture and the military. The presentation of a card attesting to this status will be requested at the entrance.
+    gratuit.1: Free
+    gratuit.2: admission for children under 4 years old
+  billet: 
+    titre: Type of ticket :
+    texte: Day or Half-day (09h-14h or 14h-18h, fare divided by two).
+
+
+
+
+
+
 Visiteur: Visitor
-navbar:
-  language: Language
-  choose: Select language

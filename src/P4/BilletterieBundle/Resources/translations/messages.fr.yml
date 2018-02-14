@@ -1,8 +1,26 @@
 # src/P4/BilletterieBundle/Resources/translations/messages.fr.yml
 
-Hello: Bonjour
-IP: Infos pratiques
 site.devise: Achetez votre billet en quelques clics.
-navbar:
-  language: Langue
-  choose: Choix langue
+
+ip: 
+  titre: Infos pratiques
+  adresse: Adresse
+  telephone: Téléphone
+  horaires: 
+    titre: Horaires
+    texte: Ouvert tous les jours de 9h à 18h sauf le mardi et dimanche. Nocturnes jusqu’à 21h45 le mercredi et le vendredi.
+  tarifs:
+    titre: Tarifs
+    normal.1: 16 € - tarif « normal »
+    normal.2: à partir de 12 ans
+    seniors.1: 12 € - tarif « seniors »
+    seniors.2: à partir de 60 ans
+    enfants.1: 8 € - tarif « enfant »
+    enfants.2: de 4 à 12 ans
+    reduit.1: 10 € - tarif « réduit »
+    reduit.2: accordé pour les étudiants, les employés du musée, ceux du Ministère de la Culture et les militaires. La présentation d'une carte attestant de ce statut sera demandé à l'entrée.
+    gratuit.1: Gratuit
+    gratuit.2: pour les enfants de moins de 4 ans
+  billet: 
+    titre: Type de billet :
+    texte: Journée ou Demi-journée (09h-14h ou 14h-18h, tarif divisé par deux).
