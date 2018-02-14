@@ -1,4 +1,5 @@
 p4_billetterie:
     resource: "@P4BilletterieBundle/Resources/config/routing.yml"
-    prefix:   /billetterie
-
+    prefix:   /{_locale}/billetterie
+    requirements:
+      _locale: en|fr

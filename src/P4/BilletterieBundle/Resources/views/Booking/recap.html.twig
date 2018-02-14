@@ -13,7 +13,7 @@
 		{% for visitor in listVisitors %}
 			<div class="recapDiv2">
 				{% set i = i + 1 %}
-				<li><strong class="visiteur">Visiteur {{ i }}</strong></li>
+				<li><strong class="visiteur">{{ 'Visiteur'|trans }} {{ i }}</strong></li>
 				<li>
 					<span class="recap">Nom : </span>{{ visitor.name }}
 				</li>

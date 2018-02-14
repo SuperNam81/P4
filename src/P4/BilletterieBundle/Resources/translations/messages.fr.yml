@@ -1,0 +1,8 @@
+# src/P4/BilletterieBundle/Resources/translations/messages.fr.yml
+
+Hello: Bonjour
+IP: Infos pratiques
+site.devise: Achetez votre billet en quelques clics.
+navbar:
+  language: Langue
+  choose: Choix langue

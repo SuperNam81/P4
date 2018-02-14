@@ -133,8 +133,8 @@ class BookingController extends Controller
     public function paymentAction()
     {
     	return $this->render('P4BilletterieBundle:Booking:payment.html.twig');
-    } 
-	
+    } 	
+
 	/*
  	public function testAction(Request $request)
 	{

@@ -16,15 +16,14 @@
     <title>{% block title %}Billetterie{% endblock %}</title>
 
     {% block stylesheets %}
-
       {% stylesheets filter='cssrewrite, ?scssphp'
       'bundles/p4billetterie/css/bootstrap.v1.css'
        %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
       {% endstylesheets %}
-
     {% endblock %}
 
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
 
   <body>
@@ -32,16 +31,122 @@
   <header class="row col-lg-12 col-xs-12">
     <h1>Musée du Louvre</h1>
     <p>
-      Achetez votre billet en quelques clics.
+      {{ 'site.devise'|trans }}
     </p>
   </header>
+
+{#   <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Musée du Louvre</a>
+      </div>
+
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+
+        {% if (app.request.getLocale()) == 'fr' %}
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'navbar.language'|trans }} <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+          <li class="dropdown-header"><strong>{{ 'navbar.choose'|trans }}</strong></li>
+          <li class="active"><a href="#"> Fr</a></li>
+          <li><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}"> En</a></li>
+          </ul>
+          </li>
+        {% endif %}
+
+        {% if (app.request.getLocale()) == 'en' %}
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'navbar.language'|trans }} <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+          <li class="dropdown-header"><strong>{{ 'navbar.choose'|trans }}</strong></li>
+          <li class=""><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}"> Fr</a></li>
+          <li class="active"><a href=""> En</a></li>
+          </ul>
+          </li>
+        {% endif %}
+
+        </ul>
+      </div><!--/.navbar-collapse -->
+    </div>
+  </nav> #}
+
+{#   <nav class="navbar-default navbar-fixed-top">
+    <div class="container">
+
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Musée du Louvre</a>
+      </div>
+
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          {% if (app.request.getLocale()) == 'fr' %}
+            <li class="dropdown">
+              <li class="active"><a href="#"> Fr</a></li>
+              <li><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}"> En</a></li>
+            </li>
+          {% endif %}
+          {% if (app.request.getLocale()) == 'en' %}
+            <li class="dropdown">
+              <li class=""><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}"> Fr</a></li>
+              <li class="active"><a href=""> En</a></li>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+
+    </div>
+  </nav> #}
+
+  <nav class="navbar-default navbar-fixed-top">
+    <div class="container">
+
+{#       <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+          </button>
+
+          <a class="navbar-brand" href="#"><img src="" /> Musée du Louvre</a>
+      </div> #}
+
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          {% if (app.request.getLocale()) == 'fr' %}
+            <li class="dropdown">
+              <li class="active"><a href="#"> Fr</a></li>
+              <li><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}"> En</a></li>
+            </li>
+          {% endif %}
+          {% if (app.request.getLocale()) == 'en' %}
+            <li class="dropdown">
+              <li class=""><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}"> Fr</a></li>
+              <li class="active"><a href=""> En</a></li>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+
+    </div>
+  </nav>
 
   <div class="row col-lg-12 col-xs-12">
   <div class="container">
 
     <div class="jumbotron col-lg-2 col-xs-12" id="infosPratiques">
       <div class="container-fluid col-lg-2 col-xs-12" id="containerInfosPratiques">
-        <h4>Infos pratiques </h4>
+        <h4>{{ 'IP'|trans }} </h4>
         <h5>Adresse</h5>
         <p>Musée du Louvre, 75058 Paris - France</p>
         <h5>Téléphone</h5>

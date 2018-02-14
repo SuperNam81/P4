@@ -1,0 +1,9 @@
+# src/P4/BilletterieBundle/Resources/translations/messages.en.yml
+
+Bonjour: Hello
+IP: Practical information
+site.devise: Buy your ticket in a few clicks.
+Visiteur: Visitor
+navbar:
+  language: Language
+  choose: Select language
