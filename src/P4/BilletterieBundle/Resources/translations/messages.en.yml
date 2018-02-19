@@ -1,6 +1,8 @@
 # src/P4/BilletterieBundle/Resources/translations/messages.en.yml
 
-site.devise: Buy your ticket in a few clicks.
+site:
+  titre: Louvre Museum
+  devise: Buy your ticket in a few clicks.
 
 ip: 
   titre: Practical information
@@ -25,9 +27,50 @@ ip:
     titre: Type of ticket :
     texte: Day or Half-day (09h-14h or 14h-18h, fare divided by two).
 
+form:
+  titre: Complete the form
+  nom: Lastname:
+  billet: Ticket type
+  email: Enter your email
 
 
+recap:
+  titre: Here is the summary of your information
+  visiteur: Visitor
+  nom: Lastname:
+  prenom: Firstname:
+  date.naissance: Date of birth:
+  age: Age:
+  pays: Country:
+  reduit: Reduced fare:
+  prix: Price:
+  email: Contact email:
+  billet: Ticket type:
+  billet.journee: Day
+  billet.demi.journee: Half-day
+  date.resa: Chosen date:
+  prix.total: Total price of your order
+  bouton.valider: Pay by credit card
 
-
-
-Visiteur: Visitor
+mail:
+  titre.1: Hi !
+  titre.2: Here is the summary of your order which also acts as ticket(s).
+  titre.3: Do not lose this email, it will be required at the entrance.
+  resa.numero: Booking number: 
+  nbr.visiteur: Number of visitors:
+  billet: Ticket type:
+  billet.journee: Day
+  billet.demi.journee: Half-day
+  date.resa: Chosen date:
+  prix.total: Total price of your order:
+  titre.4: Visitor(s) :
+  visiteur: Visitor
+  nom: Lastname :
+  prenom: Firstname :
+  date.naissance: Date of birth:
+  age: Age:
+  pays: Country:
+  reduit: Reduced fare:
+  reduit.non: 'No'
+  reduit.oui: 'Yes'
+  aurevoir: Thank you and see you soon.

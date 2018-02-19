@@ -1,6 +1,8 @@
 # src/P4/BilletterieBundle/Resources/translations/messages.fr.yml
 
-site.devise: Achetez votre billet en quelques clics.
+site:
+  titre: Musée du Louvre
+  devise: Achetez votre billet en quelques clics.
 
 ip: 
   titre: Infos pratiques
@@ -24,3 +26,53 @@ ip:
   billet: 
     titre: Type de billet :
     texte: Journée ou Demi-journée (09h-14h ou 14h-18h, tarif divisé par deux).
+
+form:
+  titre: Complétez le formulaire
+  nom: Nom :
+  billet: Type de billet
+  email: Entrez votre email
+
+recap:
+  titre: Voici le récapitulatif de vos informations
+  visiteur: Visiteur
+  nom: Nom :
+  prenom: Prénom :
+  date.naissance: Date de naissance :
+  age: Age :
+  pays: Pays :
+  reduit: Tarif réduit :
+  prix: Prix :
+  email: Email de contact :
+  billet: Type de billet :
+  billet.journee: Journée
+  billet.demi.journee: Demi-journée
+  date.resa: Date choisie :
+  prix.total: Prix total de votre commande
+  bouton.valider: Payer par carte bancaire
+
+mail:
+  titre.1: Bonjour !
+  titre.2: Voici le résumé de votre commande qui fait aussi office de billet(s).
+  titre.3: Ne perdez pas cet email, il sera exigé à l'entrée.
+  resa.numero: Numéro de réservation : 
+  nbr.visiteur: Nombre de visiteur :
+  billet: Type de billet :
+  billet.journee: Journée
+  billet.demi.journee: Demi-journée
+  date.resa: Date choisie :
+  prix.total: Prix total de votre commande :
+  titre.4: Visiteur(s) :
+  visiteur: Visiteur
+  nom: Nom :
+  prenom: Prénom :
+  date.naissance: Date de naissance :
+  age: Age :
+  pays: Pays :
+  reduit: Tarif réduit :
+  reduit.non: Non
+  reduit.oui: Oui
+  aurevoir: Merci et à bientôt.
+  
+
+

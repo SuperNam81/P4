@@ -100,10 +100,16 @@ class BookingController extends Controller
 			  "description" => "Example charge",
 			  "customer" => $customer,
 			));
-			// Message de succés pour le paiement
-			$session = $request->getSession();   
-    		$session->getFlashBag()->add('info', 'Paiement validé ! Vous allez bientôt recevoir un mail contenant vos billets ! Merci et à bientôt.');  		
 
+			// Message de succés pour le paiement
+			$currentLocale = $request->getLocale();
+			$session = $request->getSession();
+			if ($currentLocale == 'fr') {
+			   	$session->getFlashBag()->add('info', 'Paiement validé ! Vous allez recevoir un mail contenant vos billets ! Merci et à bientôt.');
+			}
+			elseif ($currentLocale == 'en') {
+			   	$session->getFlashBag()->add('info', 'Payment validated! You will receive an email containing your tickets! Thank you and see you soon.');
+			}   
 			// Création de l'entité Booking
 			$booking = new Booking();
 			$booking->setBookingDate($bookingDate);
@@ -118,7 +124,7 @@ class BookingController extends Controller
 			$em->flush();
 
 			// Appel du service RecapMailer pour envoi mail récap
-			$envoiMail = $this->container->get('p4_billetterie.email.recap_mailer')->sendRecap($booking->getId(), $bookingDate, $listVisitors, $email, $ticket, $prixTotal);  
+			$envoiMail = $this->container->get('p4_billetterie.email.recap_mailer')->sendRecap($booking->getId(), $bookingDate, $listVisitors, $email, $ticket, $prixTotal, $currentLocale);  
 
     		// Redirection payment
 			return $this->redirectToRoute('p4_billetterie_payment');

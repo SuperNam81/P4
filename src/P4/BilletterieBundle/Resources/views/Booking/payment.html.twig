@@ -9,7 +9,12 @@
         {{ message }}
       {% endfor %}
     </h3>
-    <a class="btn btn-primary" href="{{ path('p4_billetterie_homepage') }}">Retour à l'accueil</a>
+    {% if (app.request.getLocale()) == 'fr' %}
+        <a class="btn btn-primary" href="{{ path('p4_billetterie_homepage') }}">Retour à l'accueil</a>
+    {% endif %}
+    {% if (app.request.getLocale()) == 'en' %}
+        <a class="btn btn-primary" href="{{ path('p4_billetterie_homepage') }}">Back home</a>
+    {% endif %}    
 </div>
 
 <script type="text/javascript" src="https://js.stripe.com/v3/"></script>

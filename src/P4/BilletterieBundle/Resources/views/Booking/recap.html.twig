@@ -7,67 +7,62 @@
 
 {# {{ form(form) }} #}
 <div class="recapDiv1">
-	<h2>Voici le récapitulatif de vos informations</h2>
+	<h2>{{ 'recap.titre'|trans }}</h2>
 	<ul>
 		{% set i = 0 %}
 		{% for visitor in listVisitors %}
 			<div class="recapDiv2">
 				{% set i = i + 1 %}
-				<li><strong class="visiteur">{{ 'Visiteur'|trans }} {{ i }}</strong></li>
+				<li><strong class="visiteur">{{ 'recap.visiteur'|trans }} {{ i }}</strong></li>
 				<li>
-					<span class="recap">Nom : </span>{{ visitor.name }}
+					<span class="recap">{{ 'recap.nom'|trans }} </span>{{ visitor.name }}
 				</li>
 				<li>
-					<span class="recap">Prénom : </span>{{ visitor.lastname }}
+					<span class="recap">{{ 'recap.prenom'|trans }} </span>{{ visitor.lastname }}
 				</li>
 				<li>
-					<span class="recap">Date de naissance : </span>{{ visitor.dateBirth|date('d/m/Y') }}
+					<span class="recap">{{ 'recap.date.naissance'|trans }} </span>{{ visitor.dateBirth|date('d/m/Y') }}
 				</li>
 				<li>
-					<span class="recap">Age : </span>{{ visitor.age }} ans
+					<span class="recap">{{ 'recap.age'|trans }} </span>{{ visitor.age }} ans
 				</li>			
 				<li>
-					<span class="recap">Pays : </span>{{ visitor.country }}
+					<span class="recap">{{ 'recap.pays'|trans }} </span>{{ visitor.country }}
 				</li>
 				<li>
-					<span class="recap">Tarif préférentiel : </span>
+					<span class="recap">{{ 'recap.reduit'|trans }} </span>
 					{% if visitor.discount == 0 %} Non
 					{% elseif visitor.discount == 1 %} Oui
 					{% endif %}
 				</li>
 				<li>
-					<span class="recap">Prix : </span>{{ visitor.prix }}€
+					<span class="recap">{{ 'recap.prix'|trans }} </span>{{ visitor.prix }}€
 				</li><br>
 			</div>
 		{% endfor %}
 	</ul>
 
 	<div>
-		<span class="recap">Mail de contact : </span>
+		<span class="recap">{{ 'recap.email'|trans }} </span>
 		{{ email }}
 		<br>
 
-{# 		<span class="recap">Type de ticket :</span>
-		{% if ticket == 0 %} Demi-journée
-		{% elseif ticket == 1 %} Journée
-		{% endif %} #}
-
-		<span class="recap">Type de ticket :</span>
+		<span class="recap">{{ 'recap.billet'|trans }}</span>
 		{% if "now"|date('d/m/Y') == bookingDate and "now"|date('H:i') > "14:00"|date('H:i') %}
-			Demi-journée
+			{{ 'recap.billet.demi.journee'|trans }}
 		{% else %}
-			{% if ticket == 0 %} Demi-journée
-			{% elseif ticket == 1 %} Journée
+			{% if ticket == 0 %} {{ 'recap.billet.demi.journee'|trans }}
+			{% elseif ticket == 1 %} {{ 'recap.billet.journee'|trans }}
 			{% endif %}
 		{% endif %}
 
 		<br>
 
-		<span class="recap">Date choisie : </span>{{ bookingDate }}
+		<span class="recap">{{ 'recap.date.resa'|trans }} </span>{{ bookingDate }}
 		<br><br>
 
 
-		<span>Prix total de votre commande</span><br>
+		<span>{{ 'recap.prix.total'|trans }}</span><br>
 		<strong id="prixTotal">{{ prixTotal }}€</strong>
 	</div>
 	<br>
@@ -103,7 +98,7 @@
 	/////// DOM OK ///////
 	$(function() {
 		var $boutonPayer = $('.stripe-button-el');
-		$boutonPayer.text('Valider et payer par carte bancaire').attr('class', 'btn btn-primary');
+		$boutonPayer.text('{{ 'recap.bouton.valider'|trans }}').attr('class', 'btn btn-primary');
 	});
 
 	</script>

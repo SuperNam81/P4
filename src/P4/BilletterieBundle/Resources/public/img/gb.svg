@@ -1,15 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" height="512" width="512" id="flag-icon-css-gb">
-  <defs>
-    <clipPath id="a">
-      <path fill-opacity=".67" d="M250 0h500v500H250z"/>
-    </clipPath>
-  </defs>
-  <g clip-path="url(#a)" transform="translate(-256) scale(1.024)">
-    <g stroke-width="1pt">
-      <path fill="#006" d="M0 0h1000.02v500.01H0z"/>
-      <path d="M0 0v55.903l888.218 444.11h111.802V444.11L111.802.003H0zm1000.02 0v55.9L111.802 500.01H0v-55.9L888.218 0h111.802z" fill="#fff"/>
-      <path d="M416.675 0v500.01h166.67V0h-166.67zM0 166.67v166.67h1000.02V166.67H0z" fill="#fff"/>
-      <path d="M0 200.004v100.002h1000.02V200.004H0zM450.01 0v500.01h100V0h-100zM0 500.01l333.34-166.67h74.535L74.535 500.01H0zM0 0l333.34 166.67h-74.535L0 37.27V0zm592.145 166.67L925.485 0h74.535L666.68 166.67h-74.535zm407.875 333.34L666.68 333.34h74.535l258.805 129.403v37.267z" fill="#c00"/>
-    </g>
-  </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="flag-icon-css-gb" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 512 348" style="enable-background:new 0 0 512 348;" xml:space="preserve">
+<style type="text/css">
+	.st0{clip-path:url(#SVGID_2_);}
+	.st1{fill:#000066;}
+	.st2{fill:#FFFFFF;}
+	.st3{fill:#CC0000;}
+</style>
+<g>
+	<defs>
+		<rect id="SVGID_1_" x="0" y="0" width="512" height="348"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+	</clipPath>
+	<g transform="translate(-256) scale(1.024)" class="st0">
+		<g>
+			<path class="st1" d="M0,0h1000v339.9H0V0z"/>
+			<path class="st2" d="M0,0v38l888.2,301.9H1000v-38L111.8,0L0,0L0,0z M1000,0v38L111.8,339.9H0v-38L888.2,0H1000z"/>
+			<path class="st2" d="M416.7,0v339.9h166.7V0H416.7z M0,113.3v113.3h1000V113.3H0z"/>
+			<path class="st3" d="M0,135.9v68h1000v-68H0z M450,0v339.9h100V0H450z M0,339.9l333.3-113.3h74.5L74.5,339.9H0z M0,0l333.3,113.3
+				h-74.5L0,25.3V0z M592.1,113.3L925.5,0h74.5L666.7,113.3H592.1z M1000,339.9L666.7,226.6h74.5l258.8,88L1000,339.9L1000,339.9z"
+				/>
+		</g>
+	</g>
+</g>
 </svg>
