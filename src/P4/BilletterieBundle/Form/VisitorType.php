@@ -20,26 +20,31 @@ class VisitorType extends AbstractType
     {
         $builder
         ->add('name', TextType::class, array(
-            'label' => 'Nom',
-            'attr' => array('placeholder' => 'Entrez votre nom'),
+            'label' => 'form.nom',
+            'translation_domain' => 'messages',
+            'attr' => array('placeholder' => 'form.placeholder.nom'),
         ))
         ->add('lastname', TextType::class, array(
-            'label' => 'Prénom',
-            'attr' => array('placeholder' => 'Entrez votre prénom'),
+            'label' => 'form.prenom',
+            'translation_domain' => 'messages',
+            'attr' => array('placeholder' => 'form.placeholder.prenom'),
         ))
         ->add('dateBirth', BirthdayType::class, array(
-            'label' => 'Date de naissance',
+            'label' => 'form.date.naissance',
+            'translation_domain' => 'messages',
             'widget' => 'single_text',
             'placeholder' => array(
                 'year' => 'Année', 'month' => 'Mois', 'day' => 'Jour',
             ),
         ))
         ->add('country', CountryType::class, array(
-            'label' => 'Pays',
-            'placeholder' => 'Sélectionnez votre pays',
+            'label' => 'form.pays',
+            'translation_domain' => 'messages',
+            'placeholder' => 'form.placeholder.pays',
         ))
         ->add('discount', CheckboxType::class, array(
-            'label' => 'Tarif réduit',     
+            'label' => 'form.reduit',
+            'translation_domain' => 'messages',
             'required' => false));
     }
     

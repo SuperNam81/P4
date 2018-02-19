@@ -7035,6 +7035,9 @@ h5, ul {
   }
   header {
     height: 200px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 10px;
   }  
   h1 {
     font-size: 54px;
@@ -7064,6 +7067,9 @@ h5, ul {
   }
   header {
     height: 200px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 10px;
   }
   h1 {
     font-size: 60px;
@@ -7100,6 +7106,9 @@ h5, ul {
   }
   .form-group {
   margin: 3px 30px 3px 30px;
+  }
+  #formJumbo {
+    padding: 0px 5px 0px 0px;
   }
 }
 

@@ -29,16 +29,30 @@ ip:
 
 form:
   titre: Complete the form
-  nom: Lastname:
+  visiteur: Visitor
+  nom: Last name
+  prenom: First name
+  date.naissance: Date of birth
+  pays: Country
+  reduit: Reduced fare
+  ajout.visiteur: Add a visitor
   billet: Ticket type
-  email: Enter your email
-
+  date.resa: Which date?
+  valider: Validate
+  placeholder:
+    nom: Enter your last name
+    prenom: Enter your first name
+    pays: Select your country
+    email: Enter your email
+    journee: Day
+    demi.journee: Half-day
+    date.resa: Choose a date
 
 recap:
   titre: Here is the summary of your information
   visiteur: Visitor
-  nom: Lastname:
-  prenom: Firstname:
+  nom: Last name:
+  prenom: First name:
   date.naissance: Date of birth:
   age: Age:
   pays: Country:
@@ -53,9 +67,8 @@ recap:
   bouton.valider: Pay by credit card
 
 mail:
-  titre.1: Hi !
-  titre.2: Here is the summary of your order which also acts as ticket(s).
-  titre.3: Do not lose this email, it will be required at the entrance.
+  titre.1: Here is the summary of your order which also acts as ticket(s).
+  titre.2: Do not lose this email, it will be required at the entrance.
   resa.numero: Booking number: 
   nbr.visiteur: Number of visitors:
   billet: Ticket type:
@@ -63,10 +76,10 @@ mail:
   billet.demi.journee: Half-day
   date.resa: Chosen date:
   prix.total: Total price of your order:
-  titre.4: Visitor(s) :
+  titre.3: Visitor(s) :
   visiteur: Visitor
-  nom: Lastname :
-  prenom: Firstname :
+  nom: Last name :
+  prenom: First name :
   date.naissance: Date of birth:
   age: Age:
   pays: Country:

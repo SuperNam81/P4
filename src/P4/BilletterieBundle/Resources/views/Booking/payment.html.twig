@@ -4,11 +4,17 @@
 
 <div class="recapDiv1">
     <h3>
-      {# On affiche tous les messages flash dont le nom est « info » #}
-      {% for message in app.session.flashbag.get('info') %}
+      {# Messages flash « info1 » #}
+      {% for message in app.session.flashbag.get('info1') %}
         {{ message }}
       {% endfor %}
     </h3>
+    <h5>
+      {# Messages flash « info2 » #}
+      {% for message in app.session.flashbag.get('info2') %}
+        {{ message }}
+      {% endfor %}
+    </h5>    
     {% if (app.request.getLocale()) == 'fr' %}
         <a class="btn btn-primary" href="{{ path('p4_billetterie_homepage') }}">Retour à l'accueil</a>
     {% endif %}

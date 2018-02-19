@@ -10,8 +10,6 @@
 	{{ form_end(form) }}
 </div>
 
-    {# {{ dateVisitorMax }} #}
-
 {# JAVASCRIPT #}
 {% javascripts filter='jsqueeze' 
 'bundles/p4billetterie/js/jquery.js'
@@ -26,7 +24,7 @@
 /////// DOM OK ///////
 $(function() {
 	// config du lien "Ajoutez un visiteur"
-	var $addVisitorLink = $('<a href="#" class="add_visitor_link">Ajoutez un visiteur</a>');
+	var $addVisitorLink = $('<a href="#" class="add_visitor_link">{{ 'form.ajout.visiteur'|trans }}</a>');
 	var $newLinkSpan = $('<span></span>').append($addVisitorLink);		
     // Get the div that holds the collection of visitors
     var $collectionHolder = $('div.visitors');
@@ -97,15 +95,12 @@ $(function() {
         }
         return [true];
     }	
-
 	$.datepicker.setDefaults($.datepicker.regional['fr']);
 	// Intégration à l'input bookingDate
 	$( "#p4_billetteriebundle_booking_bookingDate").datepicker();
 
-
-    var $test = $(['for=p4_billetteriebundle_booking_visitors_0_name']);
-    $test.text('{{ 'form.nom'|trans }}');
-
+    var $boutonValider = $('#p4_billetteriebundle_booking_valider');
+    $boutonValider.text('{{ 'form.valider'|trans }}');
 });
 
 // Fonction AJOUT VISITEUR supplémentaire
@@ -128,14 +123,13 @@ function addVisitorForm($collectionHolder, $newLinkSpan) {
     // increase the index with one for the next item
     $collectionHolder.data('index', index + 1);
        
-    var $compteurVisiteur = $('<h5 id="compteurVisiteur">Visiteur ' + (index + 1) + '</h5>');
+    var $compteurVisiteur = $('<h5 id="compteurVisiteur">{{ 'form.visiteur'|trans }} ' + (index + 1) + '</h5>');
 
     // Display the form in the page in a div, before the "Add a visitor" link span
     var $newFormDiv = $('<div></div>').append(newForm);
     $newFormDiv.prepend($compteurVisiteur);
     $newLinkSpan.before($newFormDiv);
 }
-
 
 </script>
 

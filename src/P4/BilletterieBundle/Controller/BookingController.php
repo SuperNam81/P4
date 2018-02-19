@@ -100,15 +100,18 @@ class BookingController extends Controller
 			  "description" => "Example charge",
 			  "customer" => $customer,
 			));
-
 			// Message de succés pour le paiement
 			$currentLocale = $request->getLocale();
 			$session = $request->getSession();
+			// en français
 			if ($currentLocale == 'fr') {
-			   	$session->getFlashBag()->add('info', 'Paiement validé ! Vous allez recevoir un mail contenant vos billets ! Merci et à bientôt.');
+				$session->getFlashBag()->add('info1', 'Paiement validé !');
+				$session->getFlashBag()->add('info2', 'Vous allez recevoir un mail contenant vos billets ! Merci et à bientôt.');
 			}
+			// en anglais
 			elseif ($currentLocale == 'en') {
-			   	$session->getFlashBag()->add('info', 'Payment validated! You will receive an email containing your tickets! Thank you and see you soon.');
+				$session->getFlashBag()->add('info1', 'Payment validated!');
+				$session->getFlashBag()->add('info2', 'You will receive an email containing your tickets! Thank you and see you soon.');
 			}   
 			// Création de l'entité Booking
 			$booking = new Booking();
@@ -123,12 +126,10 @@ class BookingController extends Controller
 			$em->persist($booking);
 			$em->flush();
 
-			// Appel du service RecapMailer pour envoi mail récap
+			// Appel du service RecapMailer pour envoi du mail
 			$envoiMail = $this->container->get('p4_billetterie.email.recap_mailer')->sendRecap($booking->getId(), $bookingDate, $listVisitors, $email, $ticket, $prixTotal, $currentLocale);  
-
     		// Redirection payment
 			return $this->redirectToRoute('p4_billetterie_payment');
-
     	} catch(\Stripe\Error\Card $e) {
     		// Message en cas d'echec
 			$session->getFlashBag()->add('info', 'Paiement refusé');

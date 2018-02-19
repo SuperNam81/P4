@@ -32,21 +32,25 @@ class BookingType extends AbstractType
         ))
         ->add('email', EmailType::class, array(
             'label' => 'Email',
-            'attr' => array('placeholder' => 'Entrez votre email'),
+            'translation_domain' => 'messages',
+            'attr' => array('placeholder' => 'form.placeholder.email'),
         ))
         ->add('ticket', ChoiceType::class, array(
-            'label' => 'Type de billet',
+            'label' => 'form.billet',
+            'translation_domain' => 'messages',
             'choices' => array(
-                'Journée' => true,
-                'Demi-journée' => false,
+                'form.placeholder.journee' => true,
+                'form.placeholder.demi.journee' => false,
             ),
         ))
         ->add('bookingDate', TextType::class, array(
-            'label' => 'Quelle date ?',
+            'label' => 'form.date.resa',
+            'translation_domain' => 'messages',
             'attr' => array('width' => 50),
-            'attr' => array('placeholder' => 'Choississez une date'),
+            'attr' => array('placeholder' => 'form.placeholder.date.resa'),
         ))        
         ->add('valider', SubmitType::class, array(
+            'translation_domain' => 'messages',
             'attr' => array('class' => 'btn-primary'),
         ));
     }

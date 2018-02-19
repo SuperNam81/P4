@@ -29,9 +29,24 @@ ip:
 
 form:
   titre: Complétez le formulaire
-  nom: Nom :
+  visiteur: Visiteur
+  nom: Nom
+  prenom: Prénom
+  date.naissance: Date de naissance
+  pays: Pays
+  reduit: Tarif réduit
+  ajout.visiteur: Ajoutez un visiteur
   billet: Type de billet
-  email: Entrez votre email
+  date.resa: Quelle date ?
+  valider: Valider
+  placeholder:
+    nom: Entrez votre nom
+    prenom: Entrez votre prénom
+    pays: Sélectionnez votre pays
+    email: Entrez votre email
+    journee: Journée
+    demi.journee: Demi-journée
+    date.resa: Choississez une date
 
 recap:
   titre: Voici le récapitulatif de vos informations
@@ -52,9 +67,8 @@ recap:
   bouton.valider: Payer par carte bancaire
 
 mail:
-  titre.1: Bonjour !
-  titre.2: Voici le résumé de votre commande qui fait aussi office de billet(s).
-  titre.3: Ne perdez pas cet email, il sera exigé à l'entrée.
+  titre.1: Voici le résumé de votre commande qui fait aussi office de billet(s).
+  titre.2: Ne perdez pas cet email, il sera exigé à l'entrée.
   resa.numero: Numéro de réservation : 
   nbr.visiteur: Nombre de visiteur :
   billet: Type de billet :
@@ -62,7 +76,7 @@ mail:
   billet.demi.journee: Demi-journée
   date.resa: Date choisie :
   prix.total: Prix total de votre commande :
-  titre.4: Visiteur(s) :
+  titre.3: Visiteur(s) :
   visiteur: Visiteur
   nom: Nom :
   prenom: Prénom :
