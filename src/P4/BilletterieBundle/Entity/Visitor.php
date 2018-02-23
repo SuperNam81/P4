@@ -27,7 +27,7 @@ class Visitor
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="lastname", type="string", length=255)
      * @Assert\Length(
      *      min = 2,
      *      max = 50,
@@ -36,12 +36,12 @@ class Visitor
      * )
      * @Assert\NotBlank()
      */
-    private $name;
+    private $lastname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lastname", type="string", length=255)
+     * @ORM\Column(name="firstname", type="string", length=255)
      * @Assert\Length(
      *      min = 2,
      *      max = 50,
@@ -50,7 +50,7 @@ class Visitor
      * )
      * @Assert\NotBlank()
      */
-    private $lastname;
+    private $firstname;
 
     /**
      * @var \DateTime
@@ -99,30 +99,6 @@ class Visitor
     /**
      * Set name
      *
-     * @param string $name
-     *
-     * @return Visitor
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set lastname
-     *
      * @param string $lastname
      *
      * @return Visitor
@@ -142,6 +118,30 @@ class Visitor
     public function getLastname()
     {
         return $this->lastname;
+    }
+
+    /**
+     * Set firstname
+     *
+     * @param string $firstname
+     *
+     * @return Visitor
+     */
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    /**
+     * Get firstname
+     *
+     * @return string
+     */
+    public function getFirstname()
+    {
+        return $this->firstname;
     }
 
     /**

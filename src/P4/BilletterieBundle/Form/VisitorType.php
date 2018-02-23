@@ -19,12 +19,12 @@ class VisitorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('name', TextType::class, array(
+        ->add('lastname', TextType::class, array(
             'label' => 'form.nom',
             'translation_domain' => 'messages',
             'attr' => array('placeholder' => 'form.placeholder.nom'),
         ))
-        ->add('lastname', TextType::class, array(
+        ->add('firstname', TextType::class, array(
             'label' => 'form.prenom',
             'translation_domain' => 'messages',
             'attr' => array('placeholder' => 'form.placeholder.prenom'),

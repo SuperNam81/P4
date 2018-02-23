@@ -14,10 +14,10 @@
 				{% set i = i + 1 %}
 				<li><strong class="visiteur">{{ 'recap.visiteur'|trans }} {{ i }}</strong></li>
 				<li>
-					<span class="recap">{{ 'recap.nom'|trans }} </span>{{ visitor.name }}
+					<span class="recap">{{ 'recap.nom'|trans }} </span>{{ visitor.lastname }}
 				</li>
 				<li>
-					<span class="recap">{{ 'recap.prenom'|trans }} </span>{{ visitor.lastname }}
+					<span class="recap">{{ 'recap.prenom'|trans }} </span>{{ visitor.firstname }}
 				</li>
 				<li>
 					<span class="recap">{{ 'recap.date.naissance'|trans }} </span>{{ visitor.dateBirth|date('d/m/Y') }}
