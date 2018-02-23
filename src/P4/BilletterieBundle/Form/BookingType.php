@@ -31,7 +31,7 @@ class BookingType extends AbstractType
             'by_reference' => false,
         ))
         ->add('email', EmailType::class, array(
-            'label' => 'Email',
+            'label' => 'form.email',
             'translation_domain' => 'messages',
             'attr' => array('placeholder' => 'form.placeholder.email'),
         ))
@@ -50,6 +50,7 @@ class BookingType extends AbstractType
             'attr' => array('placeholder' => 'form.placeholder.date.resa'),
         ))        
         ->add('valider', SubmitType::class, array(
+            'label' => 'form.valider',
             'translation_domain' => 'messages',
             'attr' => array('class' => 'btn-primary'),
         ));

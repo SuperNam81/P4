@@ -24,9 +24,8 @@ class RecapMailer
 
   public function sendRecap($id, $bookingDate, $listVisitors, $email, $ticket, $prixTotal, $currentLocale)
   {  
-    // Si en français
+    // Si FR
     if ($currentLocale == 'fr') {    
-      // Envoi du mail
       $message = (new \Swift_Message('Musée du Louvre – Confirmation de votre réservation'))
         ->setFrom('louvre.ocp4@gmail.com')
         ->setTo($email)
@@ -45,9 +44,8 @@ class RecapMailer
         );
       $this->mailer->send($message);
     }
-    // Si en anglais
+    // Si EN
     elseif ($currentLocale == 'en') {
-      // Envoi du mail
       $message = (new \Swift_Message('Louvre Museum – Confirmation of your reservation'))
         ->setFrom('louvre.ocp4@gmail.com')
         ->setTo($email)

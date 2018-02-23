@@ -6923,6 +6923,11 @@ header p {
   margin: 5px 50px 5px 50px;
 }
 
+.form-control {
+  /*color: #9f9f9f;*/
+  color: #707070;
+}
+
 hr {
   /*width: 100%;*/
   margin: 20px 40px 10px 40px;

@@ -141,27 +141,4 @@ class BookingController extends Controller
     {
     	return $this->render('P4BilletterieBundle:Booking:payment.html.twig');
     } 	
-
-	/*
- 	public function testAction(Request $request)
-	{
-		$booking = new Booking();
-		$form = $this->createForm(BookingType::class, $booking);
-
-		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())  
-		{
-			$em = $this->getDoctrine()->getManager();
-			$em->persist($booking);
-			$em->flush();
-			return $this->redirectToRoute('p4_billetterie_recap', array('id' => $booking->getId()));
-		}	
-		
-		$em = $this->getDoctrine()->getManager();
-		$dateVisitorMax = $em->getRepository('P4BilletterieBundle:Visitor')->getDateVisitorMaxArray();				
-		return $this->render('P4BilletterieBundle:Booking:test.html.twig', array(
-			'form' => $form->createView(),
-			'dateVisitorMax' => $dateVisitorMax,
-		));
-	}
-	*/
 }

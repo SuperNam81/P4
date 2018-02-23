@@ -36,6 +36,7 @@ form:
   pays: Pays
   reduit: Tarif réduit
   ajout.visiteur: Ajoutez un visiteur
+  email: Email
   billet: Type de billet
   date.resa: Quelle date ?
   valider: Valider
@@ -64,7 +65,7 @@ recap:
   billet.demi.journee: Demi-journée
   date.resa: Date choisie :
   prix.total: Prix total de votre commande
-  bouton.valider: Payer par carte bancaire
+  bouton.payer: Payer par carte bancaire
 
 mail:
   titre.1: Voici le résumé de votre commande qui fait aussi office de billet(s).

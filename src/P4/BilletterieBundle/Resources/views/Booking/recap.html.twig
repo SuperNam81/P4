@@ -5,7 +5,6 @@
 
 {% block body %}
 
-{# {{ form(form) }} #}
 <div class="recapDiv1">
 	<h2>{{ 'recap.titre'|trans }}</h2>
 	<ul>
@@ -55,13 +54,9 @@
 			{% elseif ticket == 1 %} {{ 'recap.billet.journee'|trans }}
 			{% endif %}
 		{% endif %}
-
 		<br>
-
 		<span class="recap">{{ 'recap.date.resa'|trans }} </span>{{ bookingDate }}
 		<br><br>
-
-
 		<span>{{ 'recap.prix.total'|trans }}</span><br>
 		<strong id="prixTotal">{{ prixTotal }}€</strong>
 	</div>
@@ -81,9 +76,6 @@
 	</form>	
 </div>
 
-
-
-
 {# JAVASCRIPT #}
 {% javascripts filter='jsqueeze' 
 'bundles/p4billetterie/js/jquery.js'
@@ -96,7 +88,7 @@
 	/////// DOM OK ///////
 	$(function() {
 		var $boutonPayer = $('.stripe-button-el');
-		$boutonPayer.text('{{ 'recap.bouton.valider'|trans }}').attr('class', 'btn btn-primary');
+		$boutonPayer.text('{{ 'recap.bouton.payer'|trans }}').attr('class', 'btn btn-primary');
 	});
 	</script>
 

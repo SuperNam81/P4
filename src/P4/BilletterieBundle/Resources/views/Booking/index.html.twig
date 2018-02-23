@@ -99,13 +99,12 @@ $(function() {
 	// Intégration à l'input bookingDate
 	$( "#p4_billetteriebundle_booking_bookingDate").datepicker();
 
-    var $boutonValider = $('#p4_billetteriebundle_booking_valider');
-    $boutonValider.text('{{ 'form.valider'|trans }}');
+    // var $boutonValider = $('#p4_billetteriebundle_booking_valider');
+    // $boutonValider.text('{{ 'form.valider'|trans }}');
 });
 
 // Fonction AJOUT VISITEUR supplémentaire
 function addVisitorForm($collectionHolder, $newLinkSpan) {
-	console.log('coucou', arguments.callee.caller.toString());
     var $compteur = $('#compteurVisiteur').text() + 1;
     // Get the data-prototype explained earlier
     var prototype = $collectionHolder.data('prototype');

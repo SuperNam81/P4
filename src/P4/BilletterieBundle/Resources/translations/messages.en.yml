@@ -36,6 +36,7 @@ form:
   pays: Country
   reduit: Reduced fare
   ajout.visiteur: Add a visitor
+  email: Email
   billet: Ticket type
   date.resa: Which date?
   valider: Validate
@@ -64,7 +65,7 @@ recap:
   billet.demi.journee: Half-day
   date.resa: Chosen date:
   prix.total: Total price of your order
-  bouton.valider: Pay by credit card
+  bouton.payer: Pay by credit card
 
 mail:
   titre.1: Here is the summary of your order which also acts as ticket(s).
